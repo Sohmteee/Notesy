@@ -85,7 +85,7 @@ class NotesProvider with ChangeNotifier {
   } */
 
   void addPinnedNote(Note note) {
-    if (_pinnedNotes.length < 3) {
+    if (_pinnedNotes.length < _pinLimit) {
       _pinnedNotes.insert(0, note);
       _notes.remove(note);
       WidgetsBinding.instance.addPostFrameCallback((_) {
