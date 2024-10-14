@@ -55,7 +55,14 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Stack(
         children: [
-       _searchNotes.isEmpty ? Center :   ListView.builder(
+       _searchNotes.isEmpty ? Center(
+                  child: Text(
+                    'No notes here',
+                    style: TextStyle(
+                      color: Colors.grey.withOpacity(.5),
+                    ),
+                  ),
+                ) :   ListView.builder(
             padding: EdgeInsets.only(top: 16.h),
             itemCount: _searchNotes.length,
             itemBuilder: (context, index) {
