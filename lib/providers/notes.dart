@@ -13,7 +13,7 @@ class NotesProvider with ChangeNotifier {
   List<Note> get pinnedNotes => _pinnedNotes;
 
   void addNote(Note note) {
-    if (note.isPinned) {
+    if (_pinnedNotes.contains(note)) {
       addPinnedNote(note);
     } else {
       _notes.add(note);
