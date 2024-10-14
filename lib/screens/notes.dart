@@ -75,6 +75,7 @@ class _NotesScreenState extends State<NotesScreen> {
               onClosing: () {},
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               builder: (context) {
+                final color = Theme.of(context).textTheme.bodyMedium!.color.withOpacity(0.5);
                 return Container(
                   height: 64.h,
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -93,6 +94,7 @@ class _NotesScreenState extends State<NotesScreen> {
                               children: [
                                 Icon(
                                   IconlyLight.lock,
+                                  size: 20.sp,
                                   color: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
@@ -123,6 +125,7 @@ class _NotesScreenState extends State<NotesScreen> {
                               children: [
                                 Icon(
                                   IconlyLight.delete,
+                                  size: 20.sp,
                                   color: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
