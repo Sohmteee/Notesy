@@ -8,12 +8,7 @@ class NotesProvider with ChangeNotifier {
 
   List<Note> _selectedNotes = [];
   List<Note> get selectedNotes => _selectedNotes;
-  set selectedNotes(List<Note> notes) {
-    _selectedNotes = notes;
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      notifyListeners();
-    });
-  }
+  
 
   void add(Note note) {
     _notes.add(note);
@@ -36,6 +31,16 @@ class NotesProvider with ChangeNotifier {
 
   void remove(Note note) {
     _notes.remove(note);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
+
+  
+
+  void removeSelected() {
+    _notes.removeWhere((note) => _selectedNotes.contains(note));
+    _selectedNotes.clear();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });

@@ -37,7 +37,9 @@ class NoteCard extends StatelessWidget {
           context.read<NotesProvider>().selectedNotes.add(note);
         }
       },
-      onLongTap: () {},
+      onLongTap: () {
+        context.read<NotesProvider>().selectedNotes.add(note);
+      },
       child: Card(
         elevation: elevation,
         shape: RoundedRectangleBorder(
