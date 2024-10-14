@@ -96,15 +96,10 @@ class _NotesScreenState extends State<NotesScreen> {
                         ),
                         onPressed: () {},
                       ),
+                   
                       IconButton(
                         icon: const Icon(
-                          Icons.archive,
-                        ),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.delete,
+                          IconlyLight.delete,
                         ),
                         onPressed: () {},
                       ),
