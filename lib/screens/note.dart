@@ -199,6 +199,7 @@ class _NoteScreenState extends State<NoteScreen> {
               controller: _titleController,
               style: TextStyle(
                 fontSize: 20.sp,
+                fontWeight: FontWeight.bold,
               ),
               onTapOutside: (_) => _titleFocusNode.unfocus(),
               onChanged: (value) {
@@ -222,7 +223,7 @@ class _NoteScreenState extends State<NoteScreen> {
                 Text(
                   noteTime,
                   style: TextStyle(
-                    fontSize: 12.sp,
+                    fontSize: 10.sp,
                     color: Theme.of(context)
                         .textTheme
                         .bodySmall!
@@ -244,7 +245,7 @@ class _NoteScreenState extends State<NoteScreen> {
                 Text(
                   '$characterCount characters',
                   style: TextStyle(
-                    fontSize: 12.sp,
+                    fontSize: 10.sp,
                     color: Theme.of(context)
                         .textTheme
                         .bodySmall!
@@ -260,7 +261,6 @@ class _NoteScreenState extends State<NoteScreen> {
                 controller: _contentController,
                 style: TextStyle(
                   fontSize: 16.sp,
-                  
                 ),
                 onTapOutside: (_) => _contentFocusNode.unfocus(),
                 onChanged: (value) {
