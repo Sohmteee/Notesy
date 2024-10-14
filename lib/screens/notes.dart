@@ -73,7 +73,12 @@ class _NotesScreenState extends State<NotesScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           children: [
-            if (context.read<NotesProvider>().selectedNotes.isNotEmpty) 16.sH,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              height: context.watch<NotesProvider>().selectedNotes.isEmpty
+                  ? 0
+                  : 16.h,
+            ),
             Row(
               children: [
                 Text(
