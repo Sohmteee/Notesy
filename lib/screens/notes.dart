@@ -91,12 +91,20 @@ class _NotesScreenState extends State<NotesScreen> {
                         physics: const BouncingScrollPhysics(),
                         padding: EdgeInsets.symmetric(vertical: 8.h),
                         children: [
-                          ...context.watch<NotesProvider>().pinnedNotes.map(
+                          ...context
+                              .watch<NotesProvider>()
+                              .pinnedNotes
+                              .map<Note>((note) => note)
+                              .map(
                                 (note) => NoteCard(
                                   note: note,
                                 ),
                               ),
-                          ...context.watch<NotesProvider>().notes.map(
+                          ...context
+                              .watch<NotesProvider>()
+                              .notes
+                              .map<Note>((note) => note)
+                              .map(
                                 (note) => NoteCard(
                                   note: note,
                                 ),
