@@ -101,9 +101,9 @@ class NoteCard extends StatelessWidget {
                   fillColor: MaterialStateProperty.resolveWith(
                     (states) {
                       if (states.contains(MaterialState.selected)) {
-                        return Theme.of(context).primaryColor;
+                        return Theme.of(context).;
                       }
-                      return Colors.transparent;
+                      return Theme.of(context).primaryColor;
                     },
                   ),
                   shape: const CircleBorder(),

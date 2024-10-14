@@ -5,6 +5,7 @@ final lightTheme = ThemeData(
   primaryColor: primaryColor,
   scaffoldBackgroundColor: Colors.grey[100],
   canvasColor: Colors.white,
+  color
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.grey[100],
