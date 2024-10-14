@@ -1,6 +1,15 @@
 import 'package:notesy/res/res.dart';
 
 class NotesProvider with ChangeNotifier {
+  int _pinLimit = 3;
+  int get pinLimit => _pinLimit;
+  set pinLimit(int pinLimit) {
+    _pinLimit = pinLimit;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
+
   final List<Note> _notes = Note().dummyNotes();
   List<Note> get notes {
     return _notes..sort((a, b) => b.date.compareTo(a.date));
@@ -22,9 +31,9 @@ class NotesProvider with ChangeNotifier {
   void updateNote(Note currentNote, Note newNote) {
     final index = _notes.indexOf(currentNote);
     if (index == -1) {
-      if (_pinnedNotes.contains(currentNote))  {
+      if (_pinnedNotes.contains(currentNote)) {
         final pinnedIndex = _pinnedNotes.indexOf(currentNote);
-        _pinnedNotes[pinnedIndex] = newNote; 
+        _pinnedNotes[pinnedIndex] = newNote;
       } else {
         addNote(newNote);
       }
@@ -94,9 +103,7 @@ class NotesProvider with ChangeNotifier {
     }
   }
 
-  void updatePinnedNote(Note note) {
-
-  }
+  void updatePinnedNote(Note note) {}
 
   void deletePinnedNote(Note note) {
     _pinnedNotes.remove(note);
