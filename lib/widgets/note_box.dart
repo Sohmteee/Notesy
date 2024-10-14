@@ -93,7 +93,10 @@ class NoteCard extends StatelessWidget {
                       .selectedNotes
                       .contains(note),
                   onChanged: (value) {},
-                  side: ,
+                  side: BorderSide(
+                    color: Theme.of(context).textTheme.bodySmall!.color!,
+                  ),
+                  shape: const CircleBorder(),
                 ),
             ],
           ),
