@@ -10,7 +10,7 @@ class NoteCard extends StatelessWidget {
   final Note note;
   final double? elevation;
 
-  String? get title =>
+  String get title =>
       note.title.isEmpty ? note.content.split('\n').first.trim() : note.title;
 
   String? get content {
@@ -42,9 +42,7 @@ class NoteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                note.title.isEmpty
-                    ? note.content.split('\n').first.trim()
-                    : note.title,
+                title,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
@@ -53,7 +51,7 @@ class NoteCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
               Text(
-                note.content,
+                content ?? 'No text',
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontSize: 12.sp,
                       color: Theme.of(context)
