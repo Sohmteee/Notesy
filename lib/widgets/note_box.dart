@@ -4,11 +4,11 @@ class NoteCard extends StatelessWidget {
   const NoteCard({
     super.key,
     required this.note,
-    this.elevation,
+    this.elevation = 0,
   });
 
   final Note note;
-  final double? elevation;
+  final double elevation;
 
   String get title =>
       note.title.isEmpty ? note.content.split('\n').first.trim() : note.title;
