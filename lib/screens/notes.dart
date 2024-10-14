@@ -230,10 +230,13 @@ class _NotesScreenState extends State<NotesScreen> {
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
                         children: [
-                          Icon(
-                            Icons.push_pin_outlined,
-                            size: 20.sp,
-                            color: color,
+                          Transform.rotate(
+                            angle: 45 * (3.1415926535897932 / 180),
+                            child: Icon(
+                              Icons.push_pin_outlined,
+                              size: 20.sp,
+                              color: color,
+                            ),
                           ),
                           6.sH,
                           Text(

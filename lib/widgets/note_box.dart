@@ -96,7 +96,7 @@ class NoteCard extends StatelessWidget {
                             child: Icon(
                               Icons.push_pin_outlined,
                               size: 12.sp,
-                              color: Theme.of(context).hintColor,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
                       ],
