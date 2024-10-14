@@ -50,6 +50,7 @@ class _NoteScreenState extends State<NoteScreen> {
         _undoStack.removeAt(0);
       }
       _undoStack.add(_contentController.text);
+      _redoStack.clear();
       setState(() {
         canUndo = _undoStack.length > 1;
         canRedo = _redoStack.isNotEmpty;
@@ -100,13 +101,12 @@ class _NoteScreenState extends State<NoteScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        // If either title or content text field is focused, unfocus them
         if (_titleFocusNode.hasFocus || _contentFocusNode.hasFocus) {
           _titleFocusNode.unfocus();
           _contentFocusNode.unfocus();
-          return false; // Do not pop the screen
+          return false;
         }
-        return true; // Allow the screen to pop
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
