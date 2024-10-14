@@ -10,6 +10,8 @@ class NoteCard extends StatelessWidget {
   final Note note;
   final double? elevation;
 
+  String? 
+
   @override
   Widget build(BuildContext context) {
     return ZoomTapAnimation(
@@ -32,7 +34,9 @@ class NoteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                note.title ?? note.content.split('\n').first.trim(),
+                note.title.isEmpty
+                    ? note.content.split('\n').first.trim()
+                    : note.title,
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
