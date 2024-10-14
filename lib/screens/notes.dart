@@ -273,6 +273,11 @@ class _NotesScreenState extends State<NotesScreen> {
                                     ..hideCurrentSnackBar()
                                     ..showSnackBar(
                                       SnackBar(
+                                        showCloseIcon: true,
+                                        closeIconColor: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium!
+                                            .color,
                                         content: Text(
                                           'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
                                         ),
