@@ -84,18 +84,48 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ZoomTapAnimation(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Icon(
+                                  IconlyLight.lock,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
+                                ),
+                                6.sH,
+                                Text(
+                                  'Hide',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                       ZoomTapAnimation(
                         onTap: () {},
                         child: Column(
                           children: [
                             Icon(
-                              IconlyLight.lock,
+                              IconlyLight.delete,
                               color:
                                   Theme.of(context).textTheme.bodyMedium!.color,
                             ),
                             6.sH,
                             Text(
-                              'Hide',
+                              'Delete',
                               style: TextStyle(
                                 fontSize: 16.sp,
                                 color: Theme.of(context)
@@ -106,25 +136,6 @@ class _NotesScreenState extends State<NotesScreen> {
                             ),
                           ],
                         ),
-                      ),
-                      Column(
-                        children: [
-                          IconButton(
-                            icon: Icon(
-                              IconlyLight.delete,
-                              color:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
-                            ),
-                            onPressed: () {},
-                          ),
-                          Text(
-                            'Delete',
-                            style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
-                            ),
-                          ),
-                        ],
                       ),
                     ],
                   ),
