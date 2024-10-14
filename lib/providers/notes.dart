@@ -10,7 +10,7 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  final List<Note> _notes = Note().dummyNotes();
+  final List<Note> _notes = ;
   List<Note> get notes {
     return _notes..sort((a, b) => b.date.compareTo(a.date));
   }
