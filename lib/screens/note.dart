@@ -300,6 +300,7 @@ class _NoteScreenState extends State<NoteScreen> {
                                   context
                                       .read<NotesProvider>()
                                       .removeNote(widget.note);
+                                  Navigator.pop(context);
                                 },
                                 child: Text(
                                   'Delete',
