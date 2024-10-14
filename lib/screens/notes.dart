@@ -84,24 +84,27 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          IconButton(
-                            icon: Icon(
+                      IconButton(
+                        icon: Column(
+                          children: [
+                            Icon(
                               IconlyLight.lock,
                               color:
                                   Theme.of(context).textTheme.bodyMedium!.color,
                             ),
-                            onPressed: () {},
-                          ),
-                          Text(
-                            'Hide',
-                            style: TextStyle(
-                              color:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
+                            Text(
+                              'Hide',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                color: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .color,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
+                        onPressed: () {},
                       ),
                       Column(
                         children: [
