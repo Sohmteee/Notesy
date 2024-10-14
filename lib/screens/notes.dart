@@ -47,7 +47,7 @@ class _NotesScreenState extends State<NotesScreen> {
                 Text(
                   context.watch<NotesProvider>().selectedNotes.isEmpty
                       ? 'Notesy'
-                      : '${context.watch<NotesProvider>().selectedNotes.length} selected',
+                      : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
