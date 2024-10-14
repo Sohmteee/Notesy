@@ -11,7 +11,6 @@ export 'package:provider/provider.dart';
 export 'package:zoom_tap_animation/zoom_tap_animation.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:iconly/iconly.dart';
-export 'package:flutter_quill/flutter_quill.dart';
 
 
 // constants

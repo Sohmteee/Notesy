@@ -214,13 +214,13 @@ class _NotesScreenState extends State<NotesScreen> {
                       child: Column(
                         children: [
                           Icon(
-                            IconlyLight.folder,
+                            IconlyLight.lock,
                             size: 20.sp,
                             color: color,
                           ),
                           6.sH,
                           Text(
-                            'Move to',
+                            'Hide',
                             style: TextStyle(
                               fontSize: 12.sp,
                               color: color,
