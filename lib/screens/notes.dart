@@ -83,7 +83,6 @@ class _NotesScreenState extends State<NotesScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ZoomTapAnimation(
                         onTap: () {},
@@ -94,6 +93,7 @@ class _NotesScreenState extends State<NotesScreen> {
                               color:
                                   Theme.of(context).textTheme.bodyMedium!.color,
                             ),
+                            6.sH,
                             Text(
                               'Hide',
                               style: TextStyle(
