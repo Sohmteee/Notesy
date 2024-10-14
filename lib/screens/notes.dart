@@ -133,7 +133,8 @@ class _NotesScreenState extends State<NotesScreen> {
                 icon: Icon(
                   Icons.checklist_rtl_rounded,
                   color: (context.read<NotesProvider>().selectedNotes.length ==
-                          context.read<NotesProvider>().notes.length)
+                          context.read<NotesProvider>().notes.length +
+                              context.read<NotesProvider>().pinnedNotes.length)
                       ? Theme.of(context).primaryColor
                       : null,
                 ),
