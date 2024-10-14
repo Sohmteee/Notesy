@@ -22,6 +22,10 @@ class _NoteScreenState extends State<NoteScreen> {
   bool canUndo = false, canRedo = false;
   String noteTime = DateFormat('dd MMMM hh:mm a').format(DateTime.now());
 
+  final List<String> _undoStack = [];
+  final List<String> _redoStack = [];
+  static const int maxMoves = 10;
+
   @override
   void initState() {
     super.initState();
@@ -34,6 +38,49 @@ class _NoteScreenState extends State<NoteScreen> {
     _contentFocusNode.addListener(() {
       setState(() {});
     });
+
+    _contentController.addListener(() {
+      _handleUndoRedo();
+    });
+  }
+
+  void _handleUndoRedo() {
+    if (_undoStack.isEmpty || _undoStack.last != _contentController.text) {
+      if (_undoStack.length == maxMoves) {
+        _undoStack.removeAt(0);
+      }
+      _undoStack.add(_contentController.text);
+      setState(() {
+        canUndo = _undoStack.length > 1;
+        canRedo = _redoStack.isNotEmpty;
+      });
+    }
+  }
+
+  void _undo() {
+    if (_undoStack.isNotEmpty) {
+      _redoStack.add(_undoStack.removeLast());
+      _contentController.removeListener(_handleUndoRedo);
+      _contentController.text = _undoStack.isEmpty ? '' : _undoStack.last;
+      _contentController.addListener(_handleUndoRedo);
+      setState(() {
+        canUndo = _undoStack.length > 1;
+        canRedo = _redoStack.isNotEmpty;
+      });
+    }
+  }
+
+  void _redo() {
+    if (_redoStack.isNotEmpty) {
+      _undoStack.add(_redoStack.removeLast());
+      _contentController.removeListener(_handleUndoRedo);
+      _contentController.text = _undoStack.last;
+      _contentController.addListener(_handleUndoRedo);
+      setState(() {
+        canUndo = _undoStack.length > 1;
+        canRedo = _redoStack.isNotEmpty;
+      });
+    }
   }
 
   @override
@@ -66,7 +113,7 @@ class _NoteScreenState extends State<NoteScreen> {
           toolbarHeight: 48.h,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: canUndo ? _undo : null,
               splashColor: Colors.transparent,
               splashRadius: 1,
               icon: Icon(
@@ -76,7 +123,7 @@ class _NoteScreenState extends State<NoteScreen> {
             ),
             8.sW,
             IconButton(
-              onPressed: () {},
+              onPressed: canRedo ? _redo : null,
               splashColor: Colors.transparent,
               splashRadius: 1,
               icon: Icon(
