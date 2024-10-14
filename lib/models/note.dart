@@ -40,14 +40,14 @@ class Note {
   Note.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         content = json['content'],
-        date = DateTime.parse(json['date']),
+        date = DateTime.parse(json['date'])
+    ;
 
   Map<String, dynamic> toJson() => {
         'title': title,
         'content': content,
         'date': date.toIso8601String(),
-        'isPinned': isPinned,
-      }
+      };
 
   static List<Note> fromJsonList(List<dynamic> jsonList) {
     return jsonList.map((json) => Note.fromJson(json)).toList();

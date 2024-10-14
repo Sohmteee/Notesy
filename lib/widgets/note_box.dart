@@ -90,7 +90,10 @@ class NoteCard extends StatelessWidget {
                                   ),
                         ),
                         4.sW,
-                        if (note.isPinned)
+                        if (context
+                            .watch<NotesProvider>()
+                            .pinnedNotes
+                            .contains(note))
                           Transform.rotate(
                             angle: 45 * (3.1415926535897932 / 180),
                             child: Icon(
