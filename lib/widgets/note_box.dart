@@ -34,11 +34,11 @@ class NoteCard extends StatelessWidget {
             ),
           );
         } else {
-          context.read<NotesProvider>().addSelected(note);
+          context.read<NotesProvider>().toggleSelected(note);
         }
       },
       onLongTap: () {
-        context.read<NotesProvider>().addSelected(note);
+        context.read<NotesProvider>().toggleSelected(note);
       },
       child: Card(
         elevation: elevation,
@@ -47,39 +47,44 @@ class NoteCard extends StatelessWidget {
         ),
         child: Padding(
           padding: EdgeInsets.all(16.sp),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Row(
             children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  Text(
+                    content ?? 'No text',
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 12.sp,
+                          color: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .color!
+                              .withOpacity(0.7),
+                        ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  4.sH,
+                  Text(
+                    note.dateToString(),
+                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontSize: 10.sp,
+                          color: Theme.of(context).hintColor,
+                        ),
+                  ),
+                ],
               ),
-              Text(
-                content ?? 'No text',
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontSize: 12.sp,
-                      color: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .color!
-                          .withOpacity(0.7),
-                    ),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              4.sH,
-              Text(
-                note.dateToString(),
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontSize: 10.sp,
-                      color: Theme.of(context).hintColor,
-                    ),
-              ),
+              
             ],
           ),
         ),
