@@ -240,30 +240,53 @@ class _NotesScreenState extends State<NotesScreen> {
                               color: Theme.of(context).cardColor,
                               child: Column(
                                 children: [
-                                  ListTile(
-                                    leading: Icon(
-                                      Icons.share_outlined,
-                                      size: 20.sp,
-                                    ),
-                                    title: Text(
-                                      'Share',
-                                      style: TextStyle(
-                                        fontSize: 16.sp,
+                                Text(
+                                  'Delete ${context.read<NotesProvider>().selectedNotes.length} items?',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                16.sH,
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                         for (final note in context
+                                              .read<NotesProvider>()
+                                              .selectedNotes) {
+                                            context
+                                                .read<NotesProvider>()
+                                                .remove(note);
+                                          }
+                                          context
+                                              .read<NotesProvider>()
+                                              .clearSelected();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Delete',
+                                        style: TextStyle(
+                                          fontSize: 16.sp,
+                                          color: Theme.of(context).errorColor,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  ListTile(
-                                    leading: Icon(
-                                      IconlyLight.delete,
-                                      size: 20.sp,
-                                    ),
-                                    title: Text(
-                                      'Delete',
-                                      style: TextStyle(
-                                        fontSize: 16.sp,
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Cancel',
+                                        style: TextStyle(
+                                          fontSize: 16.sp,
+                                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                                        ),
                                       ),
                                     ),
-                                  ),
+                                  ],
+                                ),
                                 ],
                               ),
                             );
