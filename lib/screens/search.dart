@@ -1,4 +1,5 @@
 import 'package:notesy/res/res.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -9,28 +10,32 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final _searchController = TextEditingController();
-  late final List<Note> _searchNotes;
+  late List<Note> _searchNotes;
 
   @override
   void initState() {
     super.initState();
-    _searchNotes = context.read<NotesProvider>().pinnedNotes
-      ..addAll(context.read<NotesProvider>().notes);
-    _searchController.addListener(() {
-      setState(() {
-        _searchNotes.clear();
-        _searchNotes.addAll(context.read<NotesProvider>().pinnedNotes
-          ..addAll(context.read<NotesProvider>().notes));
-        _searchNotes.removeWhere((note) {
-          return !note.title
-                  .toLowerCase()
-                  .contains(_searchController.text.toLowerCase()) &&
-              !note.content
-                  .toLowerCase()
-                  .contains(_searchController.text.toLowerCase());
-        });
-      });
+    final notesProvider = context.read<NotesProvider>();
+    _searchNotes = [...notesProvider.pinnedNotes, ...notesProvider.notes];
+    _searchController.addListener(_onSearchChanged);
+  }
+
+  void _onSearchChanged() {
+    setState(() {
+      final searchQuery = _searchController.text.toLowerCase();
+      final notesProvider = context.read<NotesProvider>();
+      _searchNotes = [...notesProvider.pinnedNotes, ...notesProvider.notes]
+          .where((note) =>
+              note.title.toLowerCase().contains(searchQuery) ||
+              note.content.toLowerCase().contains(searchQuery))
+          .toList();
     });
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
