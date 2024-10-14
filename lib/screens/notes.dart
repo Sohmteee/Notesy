@@ -93,13 +93,11 @@ class _NotesScreenState extends State<NotesScreen> {
                         children: [
                           ...context.watch<NotesProvider>().pinnedNotes.map(
                                 (note) => NoteCard(
-                                  elevation: 0,
                                   note: note,
                                 ),
                               ),
                           ...context.watch<NotesProvider>().notes.map(
                                 (note) => NoteCard(
-                                  elevation: 0,
                                   note: note,
                                 ),
                               ),
