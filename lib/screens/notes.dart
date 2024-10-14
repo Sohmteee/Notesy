@@ -77,7 +77,7 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
               8.sH,
               Expanded(
-                child: context.watch<NotesProvider>().notes.isEmpty
+                child: context.watch<NotesProvider>().notes.isEmpty && context.watch<NotesProvider>().notes.isEmpty  
                     ? Center(
                         child: Text(
                           'No notes yet',
