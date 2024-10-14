@@ -214,7 +214,7 @@ class _NotesScreenState extends State<NotesScreen> {
                       child: Column(
                         children: [
                           Icon(
-                            Icons.move,
+                            IconlyLight.folder,
                             size: 20.sp,
                             color: color,
                           ),
