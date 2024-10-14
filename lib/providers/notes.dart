@@ -22,6 +22,7 @@ class NotesProvider with ChangeNotifier {
   void updateNote(Note currentNote, Note newNote) {
     final index = _notes.indexOf(currentNote);
     if (index == -1) {
+      if (_pinnedNotes.contains(newNote)) 
       addNote(newNote);
     } else {
       _notes[index] = newNote;
@@ -90,7 +91,7 @@ class NotesProvider with ChangeNotifier {
   }
 
   void updatePinnedNote(Note note) {
-    
+
   }
 
   void deletePinnedNote(Note note) {
