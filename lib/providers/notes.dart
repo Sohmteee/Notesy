@@ -66,4 +66,10 @@ class NotesProvider with ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void addPinned(Note note) {
+    if (_pinnedNotes.length < 3) {
+      
+    }
+  }
 }
