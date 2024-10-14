@@ -6,9 +6,14 @@ class NotesProvider with ChangeNotifier {
     return _notes..sort((a, b) => b.date.compareTo(a.date));
   }
 
-   List<Note> _selectedNotes = [];
+  List<Note> _selectedNotes = [];
   List<Note> get selectedNotes => _selectedNotes;
-  set 
+  set selectedNotes(List<Note> notes) {
+    _selectedNotes = notes;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
 
   void add(Note note) {
     _notes.add(note);
