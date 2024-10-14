@@ -98,7 +98,7 @@ class NoteCard extends StatelessWidget {
                             angle: 45 * (3.1415926535897932 / 180),
                             child: Icon(
                               Icons.push_pin_outlined,
-                              size: 12.sp,
+                              size: 14.sp,
                               color: Theme.of(context).primaryColor,
                             ),
                           ),

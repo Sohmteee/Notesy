@@ -228,7 +228,7 @@ class _NotesScreenState extends State<NotesScreen> {
                     onTap: () {
                       for (final note
                           in context.read<NotesProvider>().selectedNotes) {
-                        context.read<NotesProvider>().togglePinnedNote(note);
+                        context.read<NotesProvider>().addPinnedNote(note);
                       }
                       context.read<NotesProvider>().clearSelectedNotes();
                     },
