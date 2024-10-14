@@ -251,9 +251,14 @@ class _NotesScreenState extends State<NotesScreen> {
                                 for (final note in context
                                     .read<NotesProvider>()
                                     .selectedNotes) {
-                                  context
+                                  if (!context
                                       .read<NotesProvider>()
-                                      .addPinnedNote(note);
+                                      .pinnedNotes
+                                      .contains(note)) {
+                                    context
+                                        .read<NotesProvider>()
+                                        .addPinnedNote(note);
+                                  }
                                 }
                                 context
                                     .read<NotesProvider>()
