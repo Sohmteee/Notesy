@@ -82,7 +82,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   physics: const BouncingScrollPhysics(),
                   padding: EdgeInsets.symmetric(vertical: 8.h),
                   itemBuilder: (context, index) {
-                    return NoteCard(
+                    return  NoteCard(
                       elevation: 0,
                       note: context.watch<NotesProvider>().notes[index],
                     );
