@@ -189,7 +189,9 @@ class _NoteScreenState extends State<NoteScreen> {
               child: EditableText(
                 focusNode: _contentFocusNode,
                 controller: _contentController,
-                cursorColor: Theme.of(context).textSelectionTheme!.cursorColor,
+                cursorColor: Theme.of(context).textTheme.bodySmall!.color!,
+                backgroundCursorColor:
+                    Theme.of(context).textTheme.bodySmall!.color!,
                 style: TextStyle(
                   fontSize: 16.sp,
                 ),
@@ -203,7 +205,7 @@ class _NoteScreenState extends State<NoteScreen> {
                 maxLines: null,
                 cursorOpacityAnimates: true,
                 selectionControls: CustomTextSelectionControls(),
-                decoration: InputDecoration(
+                /* decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
                       EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
@@ -212,7 +214,7 @@ class _NoteScreenState extends State<NoteScreen> {
                     fontSize: 16.sp,
                     color: Theme.of(context).hintColor,
                   ),
-                ),
+                ), */
               ),
             ),
           ],
