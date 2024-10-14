@@ -130,7 +130,7 @@ class _NotesScreenState extends State<NotesScreen> {
             )
           : null,
       actions: [
-        if (context.watch<NotesProvider>().selectedNotes.isEmpty)
+        if (context.watch<NotesProvider>().selectedNotes.isNotEmpty)
           IconButton(
             icon: Icon(
               Icons.checklist_rtl_rounded,
