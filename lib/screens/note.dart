@@ -1,0 +1,232 @@
+import 'package:intl/intl.dart';
+import 'package:notesy/models/custom_text_selection_controls.dart';
+import 'package:notesy/res/res.dart';
+
+class NoteScreen extends StatefulWidget {
+  const NoteScreen({
+    super.key,
+    required this.note,
+  });
+
+  final Note note;
+
+  @override
+  State<NoteScreen> createState() => _NoteScreenState();
+}
+
+class _NoteScreenState extends State<NoteScreen> {
+  final _titleFocusNode = FocusNode(), _contentFocusNode = FocusNode();
+  late TextEditingController _titleController;
+  late TextEditingController _contentController;
+
+  bool canUndo = false, canRedo = false;
+  String noteTime = DateFormat('dd MMMM hh:mm a').format(DateTime.now());
+
+  @override
+  void initState() {
+    super.initState();
+    _titleController = TextEditingController(text: widget.note.title);
+    _contentController = TextEditingController(text: widget.note.content);
+
+    _titleFocusNode.addListener(() {
+      setState(() {});
+    });
+    _contentFocusNode.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _titleFocusNode.dispose();
+    _contentFocusNode.dispose();
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
+
+  int get characterCount {
+    return _contentController.text.replaceAll(' ', '').length;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return WillPopScope(
+      onWillPop: () async {
+        // If either title or content text field is focused, unfocus them
+        if (_titleFocusNode.hasFocus || _contentFocusNode.hasFocus) {
+          _titleFocusNode.unfocus();
+          _contentFocusNode.unfocus();
+          return false; // Do not pop the screen
+        }
+        return true; // Allow the screen to pop
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          toolbarHeight: 48.h,
+          actions: [
+            IconButton(
+              onPressed: () {},
+              splashColor: Colors.transparent,
+              splashRadius: 1,
+              icon: Icon(
+                Icons.undo_rounded,
+                color: canUndo ? null : Theme.of(context).hintColor,
+              ),
+            ),
+            8.sW,
+            IconButton(
+              onPressed: () {},
+              splashColor: Colors.transparent,
+              splashRadius: 1,
+              icon: Icon(
+                Icons.redo_rounded,
+                color: canRedo ? null : Theme.of(context).hintColor,
+              ),
+            ),
+            8.sW,
+            PopupMenuButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.r),
+              ),
+              onSelected: (value) {
+                switch (value) {
+                  case 'share':
+                    break;
+                  case 'delete':
+                    break;
+                }
+              },
+              itemBuilder: (context) {
+                return [
+                  PopupMenuItem(
+                    value: 'share',
+                    child: Row(
+                      children: [
+                        const Icon(Icons.share_outlined),
+                        8.sW,
+                        Text(
+                          'Share',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'delete',
+                    child: Row(
+                      children: [
+                        const Icon(IconlyLight.delete),
+                        8.sW,
+                        Text(
+                          'Delete',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ];
+              },
+            ),
+            8.sW,
+          ],
+        ),
+        body: Column(
+          children: [
+            TextField(
+              focusNode: _titleFocusNode,
+              controller: _titleController,
+              style: TextStyle(
+                fontSize: 16.sp,
+              ),
+              onTapOutside: (_) => _titleFocusNode.unfocus(),
+              onChanged: (value) {
+                setState(() {});
+              },
+              textCapitalization: TextCapitalization.sentences,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
+                hintText: 'Title',
+                hintStyle: TextStyle(
+                  fontSize: 20.sp,
+                  color: Theme.of(context).hintColor,
+                ),
+              ),
+            ),
+            4.sH,
+            Row(
+              children: [
+                16.sW,
+                Text(
+                  noteTime,
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .color!
+                        .withOpacity(0.5),
+                  ),
+                ),
+                SizedBox(
+                  height: 16.h,
+                  child: VerticalDivider(
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .color!
+                        .withOpacity(0.5),
+                    thickness: 1,
+                  ),
+                ),
+                Text(
+                  '$characterCount characters',
+                  style: TextStyle(
+                    fontSize: 12.sp,
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .color!
+                        .withOpacity(0.5),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(
+              child: TextField(
+                focusNode: _contentFocusNode,
+                controller: _contentController,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                ),
+                onTapOutside: (_) => _contentFocusNode.unfocus(),
+                onChanged: (value) {
+                  setState(() {});
+                },
+                textCapitalization: TextCapitalization.sentences,
+                maxLines: null,
+                cursorOpacityAnimates: true,
+                selectionControls: CustomTextSelectionControls(),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  hintText: 'Start typing...',
+                  hintStyle: TextStyle(
+                    fontSize: 16.sp,
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
