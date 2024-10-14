@@ -42,10 +42,8 @@ class _NotesScreenState extends State<NotesScreen> {
                             : null,
                   ),
                   onPressed: () {
-                    if (context.read<NotesProvider>().selectedNotes.length ==
+                    if (context.read<NotesProvider>().selectedNotes.length !=
                         context.read<NotesProvider>().notes.length) {
-                      context.read<NotesProvider>().clearSelected();
-                    } else {
                       for (final note in context.read<NotesProvider>().notes) {
                         if (!context
                             .read<NotesProvider>()
