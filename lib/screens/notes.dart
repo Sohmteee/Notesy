@@ -240,9 +240,14 @@ class _NotesScreenState extends State<NotesScreen> {
                             }
                             context.read<NotesProvider>().clearSelectedNotes();
                           }
-                        : (context.watch<NotesProvider>().selectedNotes.where((selectedNote) => context
-                                      .read<NotesProvider>()
-                                      .pinnedNotes.contains(selectedNote)).length >
+                        : (context
+                                    .watch<NotesProvider>()
+                                    .selectedNotes
+                                    .where((selectedNote) => !context
+                                        .read<NotesProvider>()
+                                        .pinnedNotes
+                                        .contains(selectedNote))
+                                    .length >
                                 context.watch<NotesProvider>().pinLimit -
                                     context
                                         .watch<NotesProvider>()
