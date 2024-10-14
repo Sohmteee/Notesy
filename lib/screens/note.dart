@@ -3,7 +3,8 @@ import 'package:notesy/models/custom_text_selection_controls.dart';
 import 'package:notesy/res/res.dart';
 
 class NoteScreen extends StatefulWidget {
-  const NoteScreen(this.note,{
+  const NoteScreen(
+    this.note, {
     super.key,
   });
 
@@ -105,7 +106,10 @@ class _NoteScreenState extends State<NoteScreen> {
           final note = widget.note.copyWith(
             title: _titleController.text,
             content: _contentController.text,
-            date: (_titleController.text.trim() == widget.note.title.trim() && ) DateTime.now(),
+            date: (_titleController.text.trim() == widget.note.title.trim() &&
+                    _contentController.text.trim() == widget.note.content)
+                ? null
+                : DateTime.now(),
           );
           context.read<NotesProvider>().update(widget.note, note);
         } else {
