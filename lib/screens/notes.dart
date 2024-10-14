@@ -34,7 +34,11 @@ class _NotesScreenState extends State<NotesScreen> {
                     color:
                         (context.read<NotesProvider>().selectedNotes.length ==
                                 context.read<NotesProvider>().notes.length)
-                            ? Theme.of(context).primaryColor
+                            ? Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .color!
+                                .withOpacity(0.5)
                             : null,
                   ),
                   onPressed: () {
