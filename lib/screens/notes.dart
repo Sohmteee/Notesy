@@ -139,9 +139,19 @@ class _NotesScreenState extends State<NotesScreen> {
                 ),
                 onPressed: () {
                   if (context.read<NotesProvider>().selectedNotes.length ==
-                      (context.read<NotesProvider>().notes.length + context.read<NotesProvider>().pinnedNotes.length)) {
+                      (context.read<NotesProvider>().notes.length +
+                          context.read<NotesProvider>().pinnedNotes.length)) {
                     context.read<NotesProvider>().clearSelectedNotes();
                   } else {
+                    for (final note
+                        in context.read<NotesProvider>().pinnedNotes) {
+                      if (!context
+                          .read<NotesProvider>()
+                          .selectedNotes
+                          .contains(note)) {
+                        context.read<NotesProvider>().addSelectedNote(note);
+                      }
+                    }
                     for (final note in context.read<NotesProvider>().notes) {
                       if (!context
                           .read<NotesProvider>()
