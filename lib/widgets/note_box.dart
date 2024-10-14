@@ -98,10 +98,11 @@ class NoteCard extends StatelessWidget {
                   side: BorderSide.none,
                   activeColor: Theme.of(context).primaryColor,
                   checkColor: Colors.white,
+                  materialTapTargetSize: MaterialTapTargetSize.padded,
                   fillColor: MaterialStateProperty.resolveWith(
                     (states) {
                       if (states.contains(MaterialState.selected)) {
-                        return Colors.transparent;
+                        return Theme.of(context).primaryColor;
                       }
                       return Colors.grey.withOpacity(0.2);
                     },
