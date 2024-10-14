@@ -96,14 +96,14 @@ class NoteCard extends StatelessWidget {
                     context.read<NotesProvider>().toggleSelected(note);
                   },
                   side: BorderSide.none,
-                  activeColor: Theme.of(context).primaryColor,
-                  checkColor: Colors.white,
+                  activeColor: Colors.transparent,
+                  checkColor: Theme.of(context).primaryColor,
                   fillColor: MaterialStateProperty.resolveWith(
                     (states) {
                       if (states.contains(MaterialState.selected)) {
-                        return Theme.of(context).primaryColor;
+                        return Colors.transparent;
                       }
-                      return Colors.grey.withOpacity(0.2);
+                      return Colors.grey.withOpacity(0.5);
                     },
                   ),
                   shape: const CircleBorder(),
