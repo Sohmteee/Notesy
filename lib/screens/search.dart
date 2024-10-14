@@ -14,16 +14,17 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    _searchNotes = context.read<NotesProvider>().notes.addAll([]);
+    _searchNotes = context.read<NotesProvider>().pinnedNotes
+      ..addAll(context.read<NotesProvider>().notes);
     _searchController.addListener(() {
       setState(() {
-        _searchNotes = context
-            .read<NotesProvider>()
-            .notes
-            .where((note) => note.title
-                .toLowerCase()
-                .contains(_searchController.text.toLowerCase()))
-            .toList();
+        _searchNotes.clear();
+        _searchNotes.addAll(context.read<NotesProvider>().pinnedNotes
+          ..addAll(context.read<NotesProvider>().notes));
+        _searchNotes.removeWhere((note) {
+          return !note.title.toLowerCase().contains(_searchController.text.toLowerCase()) &&
+              !note.content.toLowerCase().contains(_searchController.text.toLowerCase());
+        });
       });
     });
   }
