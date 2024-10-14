@@ -15,6 +15,10 @@ class NotesProvider with ChangeNotifier {
 
   void update(Note currentNote, Note newNote) {
     final index = _notes.indexOf(currentNote);
+    if (index == -1) {
+      add(newNote);
+      return;
+    }
     _notes[index] = newNote;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
