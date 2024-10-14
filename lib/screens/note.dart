@@ -104,11 +104,8 @@ class _NoteScreenState extends State<NoteScreen> {
         if (_titleController.text.trim().isNotEmpty ||
             _contentController.text.trim().isNotEmpty) {
           final note = widget.note.copyWith(
-            title: _titleController.text.trim().isNotEmpty
-                ? _titleController.text.trim()
-                : _contentController.text.trim().split('\n').first.trim(),
-            content:  _contentController.text.trim().split('\n').remove('')..join('\n')
-                    ,
+            title: _titleController.text.trim(),
+            content: _contentController.text.trim(),
             date: (_titleController.text.trim() == widget.note.title.trim() &&
                     _contentController.text.trim() == widget.note.content)
                 ? null
