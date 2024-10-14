@@ -72,39 +72,29 @@ class _NotesScreenState extends State<NotesScreen> {
       bottomNavigationBar: context.watch<NotesProvider>().selectedNotes.isEmpty
           ? null
           : BottomSheet(
+              constraints: BoxConstraints(
+                maxHeight: 48.h,
+              ),
               onClosing: () {},
               builder: (context) {
-                return Container(
-                  height: 64.h,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).shadowColor.withOpacity(0.1),
-                        offset: const Offset(0, -2),
-                        blurRadius: 8,
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    IconButton(
+                      icon: Icon(
+                        IconlyLight.lock,
+                        color: Theme.of(context).dividerColor,
                       ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      IconButton(
-                        icon:  Icon(
-                          IconlyLight.lock,
-                          color: Theme.of(context).dividerColor,
-                        ),
-                        onPressed: () {},
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon: Icon(
+                        IconlyLight.delete,
+                        color: Theme.of(context).dividerColor,
                       ),
-                      IconButton(
-                        icon: const Icon(
-                          IconlyLight.delete,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                      onPressed: () {},
+                    ),
+                  ],
                 );
               },
             ),
