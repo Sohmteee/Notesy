@@ -1,3 +1,5 @@
+import 'package:notesy/res/res.dart';
+
 @HiveType(typeId: 0)
 class Note extends HiveObject {
   @HiveField(0)
