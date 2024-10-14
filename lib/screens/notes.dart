@@ -233,11 +233,41 @@ class _NotesScreenState extends State<NotesScreen> {
                 children: [
                   ZoomTapAnimation(
                     onTap: () {
-                      for (final note
-                          in context.read<NotesProvider>().selectedNotes) {
-                        context.read<NotesProvider>().remove(note);
-                      }
-                      context.read<NotesProvider>().clearSelected();
+                      showModalBottomSheet(
+                          context: context, builder: (context){
+                            return Container(
+                              height: 200.h,
+                              color: Theme.of(context).cardColor,
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    leading: Icon(
+                                      Icons.share_outlined,
+                                      size: 20.sp,
+                                    ),
+                                    title: Text(
+                                      'Share',
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      IconlyLight.delete,
+                                      size: 20.sp,
+                                    ),
+                                    title: Text(
+                                      'Delete',
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          });
                     },
                     child: Column(
                       children: [
