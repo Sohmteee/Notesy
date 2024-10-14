@@ -232,7 +232,9 @@ class _NotesScreenState extends State<NotesScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ZoomTapAnimation(
-                    onTap: () {},
+                    onTap: () {
+                      context.read<NotesProvider>().removeSelected();
+                    },
                     child: Column(
                       children: [
                         Icon(
