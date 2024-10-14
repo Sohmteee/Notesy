@@ -296,10 +296,10 @@ class _NoteScreenState extends State<NoteScreen> {
                               ),
                               TextButton(
                                 onPressed: () {
+                                  Navigator.pop(context);
                                   context
                                       .read<NotesProvider>()
                                       .removeNote(widget.note);
-                                  Navigator.pop(context);
                                 },
                                 child: Text(
                                   'Delete',
