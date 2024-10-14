@@ -160,7 +160,10 @@ class _NoteScreenState extends State<NoteScreen> {
                     value: 'share',
                     child: Row(
                       children: [
-                         Icon(Icons.share_outlined, shape: 20.sp),
+                        Icon(
+                          Icons.share_outlined,
+                          size: 20.sp,
+                        ),
                         8.sW,
                         Text(
                           'Share',
@@ -175,7 +178,10 @@ class _NoteScreenState extends State<NoteScreen> {
                     value: 'delete',
                     child: Row(
                       children: [
-                        const Icon(IconlyLight.delete),
+                        Icon(
+                          IconlyLight.delete,
+                          size: 20.sp,
+                        ),
                         8.sW,
                         Text(
                           'Delete',
