@@ -69,8 +69,71 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
             )
           : null,
-
-          bottomSheet: context.watch<NotesProvider>().selectedNotes.isEmpty ? null : Bottom,
+      bottomSheet: context.watch<NotesProvider>().selectedNotes.isEmpty
+          ? null
+          : BottomSheet(
+              onClosing: () {},
+              
+              builder: (context) {
+                return Container(
+                  height: 64.h,
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Theme.of(context).shadowColor.withOpacity(0.1),
+                        offset: const Offset(0, -2),
+                        blurRadius: 8,
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          context.read<NotesProvider>().removeSelected(context
+                              .read<NotesProvider>()
+                              .selectedNotes
+                              .first);
+                        },
+                        child: Text(
+                          'Delete',
+                          style: TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      const Spacer(),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => NoteScreen(
+                                context
+                                    .read<NotesProvider>()
+                                    .selectedNotes
+                                    .first,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          'Edit',
+                          style: TextStyle(
+                            color: Theme.of(context).primaryColor,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
