@@ -25,24 +25,6 @@ class _SearchScreenState extends State<SearchScreen> {
             ),
           ),
         ),
-        /* actions: [
-          ZoomTapAnimation(
-            onTap: () {
-              _searchController.clear();
-            },
-            child: Padding(
-              padding: EdgeInsets.only(
-                right: 16.w,
-                top: 8.h,
-                bottom: 8.h,
-              ),
-              child: const Icon(
-                Icons.close,
-              ),
-            ),
-          ),
-        ],
-       */
       ),
       body: Stack(
         children: [
