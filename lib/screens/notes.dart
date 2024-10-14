@@ -234,12 +234,12 @@ class _NotesScreenState extends State<NotesScreen> {
                   ZoomTapAnimation(
                     onTap: () {
                       showModalBottomSheet(
-                          context: context, builder: (context){
-                            return Container(
-                              height: 200.h,
-                              color: Theme.of(context).cardColor,
-                              child: Column(
-                                children: [
+                          context: context,
+                          backgroundColor: Theme.of(context).cardColor,
+                          shape: ,
+                          builder: (context) {
+                            return Column(
+                              children: [
                                 Text(
                                   'Delete ${context.read<NotesProvider>().selectedNotes.length} items?',
                                   style: TextStyle(
@@ -249,27 +249,28 @@ class _NotesScreenState extends State<NotesScreen> {
                                 ),
                                 16.sH,
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   children: [
                                     TextButton(
                                       onPressed: () {
-                                         for (final note in context
-                                              .read<NotesProvider>()
-                                              .selectedNotes) {
-                                            context
-                                                .read<NotesProvider>()
-                                                .remove(note);
-                                          }
+                                        for (final note in context
+                                            .read<NotesProvider>()
+                                            .selectedNotes) {
                                           context
                                               .read<NotesProvider>()
-                                              .clearSelected();
+                                              .remove(note);
+                                        }
+                                        context
+                                            .read<NotesProvider>()
+                                            .clearSelected();
                                         Navigator.pop(context);
                                       },
                                       child: Text(
                                         'Delete',
                                         style: TextStyle(
                                           fontSize: 16.sp,
-                                          color: Theme.of(context).errorColor,
+                                          // color: Theme.of(context).errorColor,
                                         ),
                                       ),
                                     ),
@@ -281,14 +282,16 @@ class _NotesScreenState extends State<NotesScreen> {
                                         'Cancel',
                                         style: TextStyle(
                                           fontSize: 16.sp,
-                                          color: Theme.of(context).textTheme.bodyMedium!.color,
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .color,
                                         ),
                                       ),
                                     ),
                                   ],
                                 ),
-                                ],
-                              ),
+                              ],
                             );
                           });
                     },
