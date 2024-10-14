@@ -12,7 +12,6 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
     ValueListenable<ClipboardStatus>? clipboardStatus,
     Offset? lastSecondaryTapDownPosition,
   ) {
-    // Calculate the position for the toolbar to appear near the selected text.
     final toolbarX = globalEditableRegion.left + position.dx - 50;
     final toolbarY =
         globalEditableRegion.top + position.dy - textLineHeight - 56;
@@ -25,15 +24,13 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
           child: Material(
             elevation: 4.0,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                  Radius.circular(8.r)), // Rounded corners with a radius of 8.0
+              borderRadius: BorderRadius.all(Radius.circular(8.r)),
             ),
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               decoration: BoxDecoration(
                 color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.circular(
-                    8.r), // Rounded corners to match the material shape
+                borderRadius: BorderRadius.circular(8.r),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
@@ -120,7 +117,6 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
     return buttons;
   }
 
-  // Helper methods to determine which actions are available
   @override
   bool canCut(TextSelectionDelegate delegate) {
     final textSelection = delegate.textEditingValue.selection;
@@ -147,7 +143,6 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
             selection.extentOffset != textValue.length);
   }
 
-  // Handle the "Cut" operation
   @override
   void handleCut(TextSelectionDelegate delegate) {
     final String text = delegate.textEditingValue.selection
@@ -168,13 +163,12 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
     );
   }
 
-  // Handle the "Copy" operation and remove the selection
   @override
   void handleCopy(TextSelectionDelegate delegate) {
     final String text = delegate.textEditingValue.selection
         .textInside(delegate.textEditingValue.text);
     Clipboard.setData(ClipboardData(text: text));
-    // Remove the selection by collapsing it at the end of the selection
+
     final newSelectionOffset = delegate.textEditingValue.selection.end;
     delegate.userUpdateTextEditingValue(
       delegate.textEditingValue.copyWith(
@@ -216,7 +210,6 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
       SelectionChangedCause.toolbar,
     );
 
-    // Update the toolbar to show Cut, Copy, and Paste
     WidgetsBinding.instance.addPostFrameCallback((_) {
       delegate.bringIntoView(delegate.textEditingValue.selection.base);
     });
