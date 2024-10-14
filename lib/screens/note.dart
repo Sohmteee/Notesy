@@ -17,7 +17,7 @@ class NoteScreen extends StatefulWidget {
 class _NoteScreenState extends State<NoteScreen> {
   final _titleFocusNode = FocusNode(), _contentFocusNode = FocusNode();
   late TextEditingController _titleController;
-  late TextEditingController _contentController;
+  late QuillController  _contentController;
 
   bool canUndo = false, canRedo = false;
 
