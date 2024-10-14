@@ -10,7 +10,8 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  final List<Note> _notes = box.get('notes', defaultValue: <Note>[]) as List<Note>;
+  final List<Note> _notes =
+      box.get('notes', defaultValue: <Note>[]) as List<Note>;
   List<Note> get notes {
     return _notes..sort((a, b) => b.date.compareTo(a.date));
   }
@@ -19,7 +20,7 @@ class NotesProvider with ChangeNotifier {
   List<Note> get selectedNotes => _selectedNotes;
 
   final List<Note> _pinnedNotes =
-      box.get('pinnedNotes', defaultValue: <Note>[]);
+      box.get('pinnedNotes', defaultValue: <Note>[]) as List<Note>;
   List<Note> get pinnedNotes => _pinnedNotes;
 
   void addNote(Note note) {
