@@ -21,7 +21,7 @@ class Note {
       title: title ?? this.title,
       content: content ?? this.content,
       date: date ?? this.date,
-      isPinned: isPinne
+      isPinned: isPinned ?? this.isPinned,
     );
   }
 
@@ -33,23 +33,26 @@ class Note {
         other.title == title &&
         other.content == content &&
         other.date == date;
+    other.isPinned == isPinned;
   }
 
   @override
   int get hashCode => title.hashCode ^ content.hashCode ^ date.hashCode;
 
   @override
-  String toString() => 'Note title: $title, content: $content, date: $date';
+  String toString() => 'Note title: $title, content: $content, date: $date, isPinned: $isPinned';
 
   Note.fromJson(Map<String, dynamic> json)
       : title = json['title'],
         content = json['content'],
-        date = DateTime.parse(json['date']);
+        date = DateTime.parse(json['date']),
+        isPinned = json['isPinned'];
 
   Map<String, dynamic> toJson() => {
         'title': title,
         'content': content,
         'date': date.toIso8601String(),
+        'isPinned': isPinned,
       };
 
   static List<Note> fromJsonList(List<dynamic> jsonList) {
