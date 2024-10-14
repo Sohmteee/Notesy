@@ -73,15 +73,19 @@ class _NotesScreenState extends State<NotesScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           children: [
-            16.sH,
-            Text(
-              context.watch<NotesProvider>().selectedNotes.isEmpty
-                  ? 'Notesy'
-                  : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+            if (context.read<NotesProvider>().selectedNotes.isNotEmpty) 16.sH,
+            Row(
+              children: [
+                Text(
+                  context.watch<NotesProvider>().selectedNotes.isEmpty
+                      ? 'Notesy'
+                      : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
             16.sH,
             GestureDetector(
