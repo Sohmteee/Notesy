@@ -23,7 +23,7 @@ class NotesProvider with ChangeNotifier {
 
   void addNote(Note note) {
     _notes.add(note);
-    
+    box.put('notes', _notes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
@@ -35,11 +35,13 @@ class NotesProvider with ChangeNotifier {
       if (_pinnedNotes.contains(currentNote)) {
         final pinnedIndex = _pinnedNotes.indexOf(currentNote);
         _pinnedNotes[pinnedIndex] = newNote;
+        box.put('pinnedNotes', _pinnedNotes);
       } else {
         addNote(newNote);
       }
     } else {
       _notes[index] = newNote;
+      box.put('notes', _notes);
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
@@ -51,6 +53,7 @@ class NotesProvider with ChangeNotifier {
       deletePinnedNote(note);
     } else {
       _notes.remove(note);
+      box.put('notes', _notes);
     }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
@@ -67,6 +70,7 @@ class NotesProvider with ChangeNotifier {
 
   void addSelectedNote(Note note) {
     _selectedNotes.add(note);
+    box.put('selectedNotes', _selectedNotes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
@@ -74,6 +78,7 @@ class NotesProvider with ChangeNotifier {
 
   void removeSelectedNote(Note note) {
     _selectedNotes.remove(note);
+    box.put('selectedNotes', _selectedNotes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
