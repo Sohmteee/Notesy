@@ -69,6 +69,8 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
             )
           : null,
+
+          bottom
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
