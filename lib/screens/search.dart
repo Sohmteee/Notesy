@@ -69,7 +69,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   itemCount: _searchNotes.length,
                   itemBuilder: (context, index) {
                     final note = _searchNotes[index];
-                    return NoteCard(note: note);
+                    return NoteCard(
+                      note: note,
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                    );
                   },
                 ),
           if (_searchController.text.trim().isEmpty)
