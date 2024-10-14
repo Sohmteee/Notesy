@@ -224,59 +224,41 @@ class _NotesScreenState extends State<NotesScreen> {
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                    ZoomTapAnimation(
-                    onTap: context.watch<NotesProvider>().selectedNotes.every((note) => context.watch<NotesProvider>().pinnedNotes.contains(note))
-                      ? () {
-                        for (final note in context.read<NotesProvider>().selectedNotes) {
-                          context.read<NotesProvider>().removePinnedNote(note);
-                        }
-                        context.read<NotesProvider>().clearSelectedNotes();
-                        }
-                      : (context.watch<NotesProvider>().selectedNotes.length > context.watch<NotesProvider>().pinLimit - context.watch<NotesProvider>().pinnedNotes.length)
-                        ? null
-                        : () {
-                          for (final note in context.read<NotesProvider>().selectedNotes) {
-                            context.read<NotesProvider>().addPinnedNote(note);
+                  ZoomTapAnimation(
+                    onTap: context.watch<NotesProvider>().selectedNotes.every(
+                            (note) => context
+                                .watch<NotesProvider>()
+                                .pinnedNotes
+                                .contains(note))
+                        ? () {
+                            for (final note in context
+                                .read<NotesProvider>()
+                                .selectedNotes) {
+                              context
+                                  .read<NotesProvider>()
+                                  .removePinnedNote(note);
+                            }
+                            context.read<NotesProvider>().clearSelectedNotes();
                           }
-                          context.read<NotesProvider>().clearSelectedNotes();
-                          },
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Column(
-                      children: [
-                        Transform.rotate(
-                        angle: 45 * (3.1415926535897932 / 180),
-                        child: Icon(
-                          Icons.push_pin_outlined,
-                          size: 20.sp,
-                          color: context.watch<NotesProvider>().selectedNotes.length > context.watch<NotesProvider>().pinLimit - context.watch<NotesProvider>().pinnedNotes.length
-                            ? Colors.grey
-                            : Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.7),
-                        ),
-                        ),
-                        6.sH,
-                        Text(
-                        context.watch<NotesProvider>().selectedNotes.every((note) => context.watch<NotesProvider>().pinnedNotes.contains(note))
-                          ? 'Unpin'
-                          : 'Pin',
-                        style: TextStyle(
-                          fontSize: 12.sp,
-                          color: context.watch<NotesProvider>().selectedNotes.length > context.watch<NotesProvider>().pinLimit - context.watch<NotesProvider>().pinnedNotes.length
-                            ? Colors.grey
-                            : Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.7),
-                        ),
-                        ),
-                      ],
-                      ),
-                    ),
-                    ),
-                    onTap: () {
-                      for (final note
-                          in context.read<NotesProvider>().selectedNotes) {
-                        context.read<NotesProvider>().addPinnedNote(note);
-                      }
-                      context.read<NotesProvider>().clearSelectedNotes();
-                    },
+                        : (context.watch<NotesProvider>().selectedNotes.length >
+                                context.watch<NotesProvider>().pinLimit -
+                                    context
+                                        .watch<NotesProvider>()
+                                        .pinnedNotes
+                                        .length)
+                            ? null
+                            : () {
+                                for (final note in context
+                                    .read<NotesProvider>()
+                                    .selectedNotes) {
+                                  context
+                                      .read<NotesProvider>()
+                                      .addPinnedNote(note);
+                                }
+                                context
+                                    .read<NotesProvider>()
+                                    .clearSelectedNotes();
+                              },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
@@ -286,15 +268,49 @@ class _NotesScreenState extends State<NotesScreen> {
                             child: Icon(
                               Icons.push_pin_outlined,
                               size: 20.sp,
-                              color: color,
+                              color: context
+                                          .watch<NotesProvider>()
+                                          .selectedNotes
+                                          .length >
+                                      context.watch<NotesProvider>().pinLimit -
+                                          context
+                                              .watch<NotesProvider>()
+                                              .pinnedNotes
+                                              .length
+                                  ? Colors.grey
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color!
+                                      .withOpacity(0.7),
                             ),
                           ),
                           6.sH,
                           Text(
-                            'Pin',
+                            context.watch<NotesProvider>().selectedNotes.every(
+                                    (note) => context
+                                        .watch<NotesProvider>()
+                                        .pinnedNotes
+                                        .contains(note))
+                                ? 'Unpin'
+                                : 'Pin',
                             style: TextStyle(
                               fontSize: 12.sp,
-                              color: color,
+                              color: context
+                                          .watch<NotesProvider>()
+                                          .selectedNotes
+                                          .length >
+                                      context.watch<NotesProvider>().pinLimit -
+                                          context
+                                              .watch<NotesProvider>()
+                                              .pinnedNotes
+                                              .length
+                                  ? Colors.grey
+                                  : Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color!
+                                      .withOpacity(0.7),
                             ),
                           ),
                         ],
