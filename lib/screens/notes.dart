@@ -233,7 +233,10 @@ class _NotesScreenState extends State<NotesScreen> {
                 children: [
                   ZoomTapAnimation(
                     onTap: () {
-                      context.read<NotesProvider>().removeSelected();
+                      for (final note
+                          in context.read<NotesProvider>().selectedNotes) {
+                        context.read<NotesProvider>().rem(note);
+                      }
                     },
                     child: Column(
                       children: [
