@@ -85,14 +85,6 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  /*  void togglePinnedNote(Note note) {
-    if (_pinnedNotes.contains(note)) {
-      removePinnedNote(note);
-    } else {
-      addPinnedNote(note);
-    }
-  } */
-
   void addPinnedNote(Note note) {
     if (_pinnedNotes.length < _pinLimit) {
       _pinnedNotes.insert(0, note);
@@ -102,8 +94,6 @@ class NotesProvider with ChangeNotifier {
       });
     }
   }
-
-  void updatePinnedNote(Note note) {}
 
   void deletePinnedNote(Note note) {
     _pinnedNotes.remove(note);
