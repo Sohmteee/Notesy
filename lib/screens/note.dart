@@ -108,7 +108,9 @@ class _NoteScreenState extends State<NoteScreen> {
             content: _contentController.text,
             date: DateTime.now(),
           );
-          context.read<NotesProvider>().add(widget.note, note);
+          context.read<NotesProvider>().update(widget.note, note);
+        } else {
+          context.read<NotesProvider>().remove(widget.note);
         }
         return true;
       },
