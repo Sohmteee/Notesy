@@ -79,7 +79,7 @@ class _NotesScreenState extends State<NotesScreen> {
                     .textTheme
                     .bodyMedium!
                     .color!
-                    .withOpacity(0.5);
+                    .withOpacity(0.7);
                 return Container(
                   height: 64.h,
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -104,6 +104,31 @@ class _NotesScreenState extends State<NotesScreen> {
                                 6.sH,
                                 Text(
                                   'Hide',
+                                  style: TextStyle(
+                                    fontSize: 12.sp,
+                                    color: color,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ZoomTapAnimation(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Icon(
+                                  Icons.pin,
+                                  size: 20.sp,
+                                  color: color,
+                                ),
+                                6.sH,
+                                Text(
+                                  'Pin',
                                   style: TextStyle(
                                     fontSize: 12.sp,
                                     color: color,
