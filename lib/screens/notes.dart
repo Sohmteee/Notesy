@@ -268,7 +268,15 @@ class _NotesScreenState extends State<NotesScreen> {
                                           .watch<NotesProvider>()
                                           .pinnedNotes
                                           .length)
-                              ? null
+                              ? () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
+                                      ),
+                                    ),
+                                  );
+                                }
                               : () {
                                   for (final note in context
                                       .read<NotesProvider>()
