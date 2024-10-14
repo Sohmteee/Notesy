@@ -208,22 +208,25 @@ class _NotesScreenState extends State<NotesScreen> {
                 children: [
                   ZoomTapAnimation(
                     onTap: () {},
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.push_pin_outlined,
-                          size: 20.sp,
-                          color: color,
-                        ),
-                        6.sH,
-                        Text(
-                          'Pin',
-                          style: TextStyle(
-                            fontSize: 12.sp,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          Icon(
+                            Icons.push_pin_outlined,
+                            size: 20.sp,
                             color: color,
                           ),
-                        ),
-                      ],
+                          6.sH,
+                          Text(
+                            'Pin',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: color,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -234,92 +237,95 @@ class _NotesScreenState extends State<NotesScreen> {
                   ZoomTapAnimation(
                     onTap: () {
                       showModalBottomSheet(
-                          context: context,
-                          backgroundColor: Theme.of(context).cardColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(12.r),
-                            ),
+                        context: context,
+                        backgroundColor: Theme.of(context).cardColor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(12.r),
                           ),
-                          builder: (context) {
-                            return Padding(
-                              padding: EdgeInsets.all(16.sp),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Text(
-                                    'Delete ${context.read<NotesProvider>().selectedNotes.length} item${context.read<NotesProvider>().selectedNotes.length > 1 ? 's' : ''}?',
-                                    style: TextStyle(
-                                      fontSize: 16.sp,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                        ),
+                        builder: (context) {
+                          return Padding(
+                            padding: EdgeInsets.all(16.sp),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Delete ${context.read<NotesProvider>().selectedNotes.length} item${context.read<NotesProvider>().selectedNotes.length > 1 ? 's' : ''}?',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.bold,
                                   ),
-                                  16.sH,
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'Cancel',
-                                          style: TextStyle(
-                                            fontSize: 16.sp,
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .color,
-                                          ),
+                                ),
+                                16.sH,
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Cancel',
+                                        style: TextStyle(
+                                          fontSize: 16.sp,
+                                          color: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium!
+                                              .color,
                                         ),
                                       ),
-                                      TextButton(
-                                        onPressed: () {
-                                          for (final note in context
-                                              .read<NotesProvider>()
-                                              .selectedNotes) {
-                                            context
-                                                .read<NotesProvider>()
-                                                .remove(note);
-                                          }
+                                    ),
+                                    TextButton(
+                                      onPressed: () {
+                                        for (final note in context
+                                            .read<NotesProvider>()
+                                            .selectedNotes) {
                                           context
                                               .read<NotesProvider>()
-                                              .clearSelected();
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'Delete',
-                                          style: TextStyle(
-                                            fontSize: 16.sp,
-                                            color:
-                                                Theme.of(context).primaryColor,
-                                          ),
+                                              .remove(note);
+                                        }
+                                        context
+                                            .read<NotesProvider>()
+                                            .clearSelected();
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        'Delete',
+                                        style: TextStyle(
+                                          fontSize: 16.sp,
+                                          color: Theme.of(context).primaryColor,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            );
-                          });
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      );
                     },
-                    child: Column(
-                      children: [
-                        Icon(
-                          IconlyLight.delete,
-                          size: 20.sp,
-                          color: color,
-                        ),
-                        6.sH,
-                        Text(
-                          'Delete',
-                          style: TextStyle(
-                            fontSize: 12.sp,
+                    child: Padding(
+                      padding:  EdgeInsets.symmetric(horizontal: 8.w),
+                      child: Column(
+                        children: [
+                          Icon(
+                            IconlyLight.delete,
+                            size: 20.sp,
                             color: color,
                           ),
-                        ),
-                      ],
+                          6.sH,
+                          Text(
+                            'Delete',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: color,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
