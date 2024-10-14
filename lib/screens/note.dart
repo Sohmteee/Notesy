@@ -84,7 +84,13 @@ class _NoteScreenState extends State<NoteScreen> {
     if (_redoStack.isNotEmpty) {
       _undoStack.add(_redoStack.removeLast());
       _contentController.removeListener(_handleUndoRedo);
-      _contentController.document.toPlainText() = _undoStack.last;
+      final newContent = _undoStack.last;
+      _contentController.replaceText(
+        0,
+        _contentController.document.length,
+        newContent,
+        TextSelection.collapsed(offset: newContent.length),
+      );
       _contentController.addListener(_handleUndoRedo);
       setState(() {
         canUndo = _undoStack.length > 1;
