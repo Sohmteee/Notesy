@@ -278,8 +278,10 @@ class _NotesScreenState extends State<NotesScreen> {
                                             .textTheme
                                             .bodyMedium!
                                             .color,
+                                        behavior: SnackBarBehavior.fixed,
                                         content: Text(
                                           'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
+                                          
                                         ),
                                       ),
                                     );
