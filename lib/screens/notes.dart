@@ -102,7 +102,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                 Text(
                                   'Hide',
                                   style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 12.sp,
                                     color: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
@@ -132,7 +132,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                 Text(
                                   'Delete',
                                   style: TextStyle(
-                                    fontSize: 16.sp,
+                                    fontSize: 12.sp,
                                     color: Theme.of(context)
                                         .textTheme
                                         .bodyMedium!
