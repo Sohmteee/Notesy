@@ -26,12 +26,17 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ZoomTapAnimation(
       onTap: () {
-        Navigator.push(
+        if (context.read<NotesProvider>().selectedNotes.isEmpty) {
+          Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => NoteScreen(note),
           ),
         );
+        }
+      },
+      onLongTap: () {
+
       },
       child: Card(
         elevation: elevation,
