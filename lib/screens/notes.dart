@@ -292,23 +292,7 @@ class _NotesScreenState extends State<NotesScreen> {
                               child: Icon(
                                 Icons.push_pin_outlined,
                                 size: 20.sp,
-                                color: context
-                                            .watch<NotesProvider>()
-                                            .selectedNotes
-                                            .length >
-                                        context
-                                                .watch<NotesProvider>()
-                                                .pinLimit -
-                                            context
-                                                .watch<NotesProvider>()
-                                                .pinnedNotes
-                                                .length
-                                    ? Colors.grey
-                                    : Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .color!
-                                        .withOpacity(0.7),
+                                color: color,
                               ),
                             ),
                             6.sH,
