@@ -10,7 +10,17 @@ class NoteCard extends StatelessWidget {
   final Note note;
   final double? elevation;
 
-  String? 
+  String? get title => note.title.isEmpty
+      ? note.content.split('\n').first.trim()
+      : note.title;
+
+  String? get content {
+    if (note.title.isNotEmpty) {
+      return note.content;
+    }
+    final content = note.content.split('\n').removeAt(0);
+    return note.content;
+  }
 
   @override
   Widget build(BuildContext context) {
