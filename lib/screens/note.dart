@@ -20,7 +20,7 @@ class _NoteScreenState extends State<NoteScreen> {
   late TextEditingController _contentController;
 
   bool canUndo = false, canRedo = false;
-  String noteTime = DateFormat('dd MMMM hh:mm a').format(DateTime.now());
+  String noteTime = DateFormat('dd MMMM hh:mm a').format(widget.note.date);
 
   final List<String> _undoStack = [];
   final List<String> _redoStack = [];
