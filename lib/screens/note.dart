@@ -49,11 +49,11 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   void _handleUndoRedo() {
-    if (_undoStack.isEmpty || _undoStack.last != _contentController.text) {
+    if (_undoStack.isEmpty || _undoStack.last != _contentController.document.toPlainText()) {
       if (_undoStack.length == maxMoves) {
         _undoStack.removeAt(0);
       }
-      _undoStack.add(_contentController.text);
+      _undoStack.add(_contentController.document.toPlainText());
       _redoStack.clear();
       setState(() {
         canUndo = _undoStack.length > 1;
@@ -66,20 +66,32 @@ class _NoteScreenState extends State<NoteScreen> {
     if (_undoStack.isNotEmpty) {
       _redoStack.add(_undoStack.removeLast());
       _contentController.removeListener(_handleUndoRedo);
-      _contentController.text = _undoStack.isEmpty ? '' : _undoStack.last;
+      final newContent = _undoStack.isEmpty ? '' : _undoStack.last;
+      _contentController.replaceText(
+        0,
+        _contentController.document.length,
+        newContent,
+        TextSelection.collapsed(offset: newContent.length),
+      );
       _contentController.addListener(_handleUndoRedo);
       setState(() {
         canUndo = _undoStack.length > 1;
         canRedo = _redoStack.isNotEmpty;
       });
     }
-  }
+      final newContent = _undoStack.last;
+      _contentController.replaceText(
+        0,
+        _contentController.document.length,
+        newContent,
+        TextSelection.collapsed(offset: newContent.length),
+      );
 
   void _redo() {
     if (_redoStack.isNotEmpty) {
       _undoStack.add(_redoStack.removeLast());
       _contentController.removeListener(_handleUndoRedo);
-      _contentController.text = _undoStack.last;
+      _contentController.document.toPlainText() = _undoStack.last;
       _contentController.addListener(_handleUndoRedo);
       setState(() {
         canUndo = _undoStack.length > 1;
@@ -98,7 +110,7 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   int get characterCount {
-    return _contentController.text.replaceAll(' ', '').length;
+    return _contentController.document.toPlainText().replaceAll(' ', '').length;
   }
 
   @override
@@ -108,12 +120,12 @@ class _NoteScreenState extends State<NoteScreen> {
     return WillPopScope(
       onWillPop: () async {
         if (_titleController.text.trim().isNotEmpty ||
-            _contentController.text.trim().isNotEmpty) {
+            _contentController.document.toPlainText().trim().isNotEmpty) {
           final note = widget.note.copyWith(
             title: _titleController.text.trim(),
-            content: _contentController.text.trim(),
+            content: _contentController.document.toPlainText().trim(),
             date: (_titleController.text.trim() == widget.note.title.trim() &&
-                    _contentController.text.trim() == widget.note.content)
+                    _contentController.document.toPlainText().trim() == widget.note.content)
                 ? null
                 : DateTime.now(),
           );
