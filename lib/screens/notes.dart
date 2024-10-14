@@ -73,7 +73,7 @@ class _NotesScreenState extends State<NotesScreen> {
           ? null
           : BottomSheet(
               onClosing: () {},
-              backgroundColor: ,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               builder: (context) {
                 return Container(
                   height: 64.h,
