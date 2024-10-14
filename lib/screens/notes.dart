@@ -257,9 +257,9 @@ class _NotesScreenState extends State<NotesScreen> {
                                   16.sH,
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceAround,
                                     children: [
-                                    TextButton(
+                                      TextButton(
                                         onPressed: () {
                                           Navigator.pop(context);
                                         },
@@ -273,7 +273,8 @@ class _NotesScreenState extends State<NotesScreen> {
                                                 .color,
                                           ),
                                         ),
-                                      ),     TextButton(
+                                      ),
+                                      TextButton(
                                         onPressed: () {
                                           for (final note in context
                                               .read<NotesProvider>()
@@ -291,11 +292,11 @@ class _NotesScreenState extends State<NotesScreen> {
                                           'Delete',
                                           style: TextStyle(
                                             fontSize: 16.sp,
-                                            color: Theme.of(context).primary,
+                                            color:
+                                                Theme.of(context).primaryColor,
                                           ),
                                         ),
                                       ),
-                                   
                                     ],
                                   ),
                                 ],
