@@ -12,7 +12,7 @@ Future<void> main() async {
   await Hive.initFlutter();
   box = await Hive.openBox('notes');
 
-  aw
+  await Hive.registerAdapter(NoteAdapter());
 
   runApp(
     MultiProvider(
