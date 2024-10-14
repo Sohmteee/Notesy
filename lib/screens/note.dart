@@ -105,7 +105,7 @@ class _NoteScreenState extends State<NoteScreen> {
           final note = widget.note.copyWith(
             title: _titleController.text,
             content: _contentController.text,
-            date: DateTime.now(),
+            date: (_titleController.text.trim() == widget.note.title.trim() && ) DateTime.now(),
           );
           context.read<NotesProvider>().update(widget.note, note);
         } else {
