@@ -14,9 +14,9 @@ class _NotesScreenState extends State<NotesScreen> {
       appBar: AppBar(
         toolbarHeight: 32.h,
         actions: [
-          const Icon(
+         context.watch<NotesProvider>().selectedNotes.isEmpty ? const Icon(
             IconlyLight.setting,
-          ),
+          ) : const Icon(Icons.check),
           16.sW,
         ],
       ),
