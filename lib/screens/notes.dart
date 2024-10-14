@@ -281,7 +281,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                         behavior: SnackBarBehavior.fixed,
                                         content: Text(
                                           'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
-                                          
+                                          textAlign: TextAlign.center,
                                         ),
                                       ),
                                     );
