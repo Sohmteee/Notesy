@@ -87,14 +87,14 @@ class _NotesScreenState extends State<NotesScreen> {
                       IconButton(
                         icon: Icon(
                           IconlyLight.lock,
-                          color: Theme.of(context).dividerColor,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                         onPressed: () {},
                       ),
                       IconButton(
                         icon: Icon(
                           IconlyLight.delete,
-                          color: Theme.of(context).dividerColor,
+                          color: Theme.of(context).textTheme.bodyMedium!.color,
                         ),
                         onPressed: () {},
                       ),
