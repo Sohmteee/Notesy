@@ -89,6 +89,10 @@ class NotesProvider with ChangeNotifier {
     }
   }
 
+  void updatePinnedNote(Note note) {
+    
+  }
+
   void deletePinnedNote(Note note) {
     _pinnedNotes.remove(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
