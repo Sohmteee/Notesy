@@ -102,7 +102,7 @@ class _NoteScreenState extends State<NoteScreen> {
     return WillPopScope(
       onWillPop: () async {
         context.read<NotesProvider>().notes.add(
-              widget.note.copyWith(
+              Note(
                 title: _titleController.text.trim(),
                 content: _contentController.text.trim(),
                 date: DateTime.now(),
