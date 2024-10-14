@@ -62,7 +62,7 @@ class NoteCard extends StatelessWidget {
                     Text(
                       title,
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontSize: 14.sp,
+                            fontSize: 15.sp,
                             fontWeight: FontWeight.bold,
                           ),
                       maxLines: 1,
