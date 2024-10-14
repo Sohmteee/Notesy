@@ -79,12 +79,23 @@ class NoteCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     4.sH,
-                    Text(
-                      note.dateToString(),
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            fontSize: 10.sp,
+                    Row(
+                      children: [
+                        Text(
+                          note.dateToString(),
+                          style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                fontSize: 10.sp,
+                                color: Theme.of(context).hintColor,
+                              ),
+                        ),
+                        4.sW,
+                        if (note.isPinned)
+                          Icon(
+                            Icons.push_pin_outlined,
+                            size: 12.sp,
                             color: Theme.of(context).hintColor,
                           ),
+                      ],
                     ),
                   ],
                 ),
