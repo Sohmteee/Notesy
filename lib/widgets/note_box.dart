@@ -34,11 +34,11 @@ class NoteCard extends StatelessWidget {
             ),
           );
         } else {
-          context.read<NotesProvider>().toggleSelected(note);
+          context.read<NotesProvider>().toggleSelectedNotes(note);
         }
       },
       onLongTap: () {
-        context.read<NotesProvider>().toggleSelected(note);
+        context.read<NotesProvider>().toggleSelectedNotes(note);
       },
       child: Card(
         elevation: elevation,
@@ -96,7 +96,7 @@ class NoteCard extends StatelessWidget {
                       .selectedNotes
                       .contains(note),
                   onChanged: (value) {
-                    context.read<NotesProvider>().toggleSelected(note);
+                    context.read<NotesProvider>().toggleSelectedNotes(note);
                   },
                   side: BorderSide.none,
                   activeColor: Colors.transparent,

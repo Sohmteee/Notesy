@@ -112,9 +112,9 @@ class _NoteScreenState extends State<NoteScreen> {
                 ? null
                 : DateTime.now(),
           );
-          context.read<NotesProvider>().update(widget.note, note);
+          context.read<NotesProvider>().updateNote(widget.note, note);
         } else {
-          context.read<NotesProvider>().remove(widget.note);
+          context.read<NotesProvider>().removeNote(widget.note);
         }
         return true;
       },
@@ -298,7 +298,7 @@ class _NoteScreenState extends State<NoteScreen> {
                                 onPressed: () {
                                   context
                                       .read<NotesProvider>()
-                                      .remove(widget.note);
+                                      .removeNote(widget.note);
                                   Navigator.pop(context);
                                 },
                                 child: Text(

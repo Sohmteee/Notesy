@@ -12,17 +12,17 @@ class NotesProvider with ChangeNotifier {
   final List<Note> _pinnedNotes = [];
   List<Note> get pinnedNotes => _pinnedNotes;
 
-  void add(Note note) {
+  void addNote(Note note) {
     _notes.add(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
 
-  void update(Note currentNote, Note newNote) {
+  void updateNote(Note currentNote, Note newNote) {
     final index = _notes.indexOf(currentNote);
     if (index == -1) {
-      add(newNote);
+      addNote(newNote);
       return;
     }
     _notes[index] = newNote;
@@ -31,22 +31,22 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  void remove(Note note) {
+  void removeNote(Note note) {
     _notes.remove(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
 
-  void toggleSelected(Note note) {
+  void toggleSelectedNotes(Note note) {
     if (_selectedNotes.contains(note)) {
       removeSelected(note);
     } else {
-      addSelected(note);
+      addSelectedNotes(note);
     }
   }
 
-  void addSelected(Note note) {
+  void addSelectedNotes(Note note) {
     _selectedNotes.add(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();

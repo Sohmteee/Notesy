@@ -132,7 +132,7 @@ class _NotesScreenState extends State<NotesScreen> {
                           .read<NotesProvider>()
                           .selectedNotes
                           .contains(note)) {
-                        context.read<NotesProvider>().addSelected(note);
+                        context.read<NotesProvider>().addSelectedNotes(note);
                       }
                     }
                   }
@@ -287,7 +287,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                             .selectedNotes) {
                                           context
                                               .read<NotesProvider>()
-                                              .remove(note);
+                                              .removeNote(note);
                                         }
                                         context
                                             .read<NotesProvider>()
