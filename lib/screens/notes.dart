@@ -114,28 +114,35 @@ class _NotesScreenState extends State<NotesScreen> {
                           ),
                         ],
                       ),
-                      ZoomTapAnimation(
-                        onTap: () {},
-                        child: Column(
-                          children: [
-                            Icon(
-                              IconlyLight.delete,
-                              color:
-                                  Theme.of(context).textTheme.bodyMedium!.color,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          ZoomTapAnimation(
+                            onTap: () {},
+                            child: Column(
+                              children: [
+                                Icon(
+                                  IconlyLight.delete,
+                                  color: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .color,
+                                ),
+                                6.sH,
+                                Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    color: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .color,
+                                  ),
+                                ),
+                              ],
                             ),
-                            6.sH,
-                            Text(
-                              'Delete',
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                color: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .color,
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
