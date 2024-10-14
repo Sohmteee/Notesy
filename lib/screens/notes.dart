@@ -174,6 +174,8 @@ class _NotesScreenState extends State<NotesScreen> {
                 );
               },
             ),
+      
+      
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
