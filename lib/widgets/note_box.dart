@@ -96,8 +96,8 @@ class NoteCard extends StatelessWidget {
                     context.read<NotesProvider>().toggleSelected(note);
                   },
                   side: BorderSide.none,
-                  activeColor: Colors.transparent,
-                  checkColor: Theme.of(context).primaryColor,
+                  activeColor: Theme.of(context).primaryColor,
+                  checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(
                     (states) {
                       if (states.contains(MaterialState.selected)) {
