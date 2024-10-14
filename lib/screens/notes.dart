@@ -229,11 +229,11 @@ class _NotesScreenState extends State<NotesScreen> {
                                 .read<NotesProvider>()
                                 .pinnedNotes
                                 .contains(selectedNote))
-                            .length <=
+                            .length >
                         context.watch<NotesProvider>().pinLimit -
                             context.watch<NotesProvider>().pinnedNotes.length)
-                    ? 1
-                    : 0.5,
+                    ? .5
+                    : 1,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
