@@ -9,7 +9,13 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final _searchController = TextEditingController();
-  final _searchNotes
+  late final List<Note> _searchNotes;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchNotes = context.read<NotesProvider>().notes;
+  }
 
   @override
   Widget build(BuildContext context) {
