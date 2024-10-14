@@ -83,9 +83,11 @@ class _NotesScreenState extends State<NotesScreen> {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      IconButton(
-                        icon: Column(
+                      ZoomTapAnimation(
+                        onTap: () {},
+                        child: Column(
                           children: [
                             Icon(
                               IconlyLight.lock,
@@ -104,7 +106,6 @@ class _NotesScreenState extends State<NotesScreen> {
                             ),
                           ],
                         ),
-                        onPressed: () {},
                       ),
                       Column(
                         children: [
