@@ -29,7 +29,10 @@ class _NoteScreenState extends State<NoteScreen> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.note.title);
-    _contentController = TextEditingController(text: widget.note.content);
+    _contentController = QuillController(
+      document: Document.fromJson(jsonDecode(widget.note.content)),
+      selection: const TextSelection.collapsed(offset: 0),
+    );
 
     _titleFocusNode.addListener(() {
       setState(() {});
