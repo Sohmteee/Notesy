@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:intl/intl.dart';
 import 'package:notesy/models/custom_text_selection_controls.dart';
 import 'package:notesy/res/res.dart';
@@ -19,7 +17,7 @@ class NoteScreen extends StatefulWidget {
 class _NoteScreenState extends State<NoteScreen> {
   final _titleFocusNode = FocusNode(), _contentFocusNode = FocusNode();
   late TextEditingController _titleController;
-  late QuillController _contentController;
+  late TextEditingController _contentController;
 
   bool canUndo = false, canRedo = false;
 
@@ -31,10 +29,7 @@ class _NoteScreenState extends State<NoteScreen> {
   void initState() {
     super.initState();
     _titleController = TextEditingController(text: widget.note.title);
-    _contentController = QuillController(
-      document: Document.fromJson(jsonDecode(widget.note.content)),
-      selection: const TextSelection.collapsed(offset: 0),
-    );
+    _contentController = TextEditingController(text: widget.note.content);
 
     _titleFocusNode.addListener(() {
       setState(() {});
@@ -49,12 +44,11 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   void _handleUndoRedo() {
-    final currentContent = _contentController.document.toPlainText();
-    if (_undoStack.isEmpty || _undoStack.last != currentContent) {
+    if (_undoStack.isEmpty || _undoStack.last != _contentController.text) {
       if (_undoStack.length == maxMoves) {
         _undoStack.removeAt(0);
       }
-      _undoStack.add(currentContent);
+      _undoStack.add(_contentController.text);
       _redoStack.clear();
       setState(() {
         canUndo = _undoStack.length > 1;
@@ -67,13 +61,7 @@ class _NoteScreenState extends State<NoteScreen> {
     if (_undoStack.isNotEmpty) {
       _redoStack.add(_undoStack.removeLast());
       _contentController.removeListener(_handleUndoRedo);
-      final newContent = _undoStack.isEmpty ? '' : _undoStack.last;
-      _contentController.replaceText(
-        0,
-        _contentController.document.length,
-        newContent,
-        TextSelection.collapsed(offset: newContent.length),
-      );
+      _contentController.text = _undoStack.isEmpty ? '' : _undoStack.last;
       _contentController.addListener(_handleUndoRedo);
       setState(() {
         canUndo = _undoStack.length > 1;
@@ -86,13 +74,7 @@ class _NoteScreenState extends State<NoteScreen> {
     if (_redoStack.isNotEmpty) {
       _undoStack.add(_redoStack.removeLast());
       _contentController.removeListener(_handleUndoRedo);
-      final newContent = _undoStack.last;
-      _contentController.replaceText(
-        0,
-        _contentController.document.length,
-        newContent,
-        TextSelection.collapsed(offset: newContent.length),
-      );
+      _contentController.text = _undoStack.last;
       _contentController.addListener(_handleUndoRedo);
       setState(() {
         canUndo = _undoStack.length > 1;
@@ -111,7 +93,7 @@ class _NoteScreenState extends State<NoteScreen> {
   }
 
   int get characterCount {
-    return _contentController.document.toPlainText().replaceAll(' ', '').length;
+    return _contentController.text.replaceAll(' ', '').length;
   }
 
   @override
@@ -121,13 +103,12 @@ class _NoteScreenState extends State<NoteScreen> {
     return WillPopScope(
       onWillPop: () async {
         if (_titleController.text.trim().isNotEmpty ||
-            _contentController.document.toPlainText().trim().isNotEmpty) {
+            _contentController.text.trim().isNotEmpty) {
           final note = widget.note.copyWith(
             title: _titleController.text.trim(),
-            content: jsonEncode(_contentController.document.toDelta().toJson()),
+            content: _contentController.text.trim(),
             date: (_titleController.text.trim() == widget.note.title.trim() &&
-                    _contentController.document.toPlainText().trim() ==
-                        widget.note.content)
+                    _contentController.text.trim() == widget.note.content)
                 ? null
                 : DateTime.now(),
           );
@@ -205,10 +186,32 @@ class _NoteScreenState extends State<NoteScreen> {
               ],
             ),
             Expanded(
-              child: QuillEditor(
-                controller: _contentController,
-                scrollController: ScrollController(),
+              child: TextField(
                 focusNode: _contentFocusNode,
+                controller: _contentController,
+                style: TextStyle(
+                  fontSize: 16.sp,
+                ),
+                onTapOutside: (_) => _contentFocusNode.unfocus(),
+                onChanged: (value) {
+                  setState(() {
+                    _handleUndoRedo();
+                  });
+                },
+                textCapitalization: TextCapitalization.sentences,
+                maxLines: null,
+                cursorOpacityAnimates: true,
+                selectionControls: CustomTextSelectionControls(),
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+                  hintText: 'Start typing...',
+                  hintStyle: TextStyle(
+                    fontSize: 16.sp,
+                    color: Theme.of(context).hintColor,
+                  ),
+                ),
               ),
             ),
           ],
