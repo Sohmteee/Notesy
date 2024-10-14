@@ -83,17 +83,21 @@ class NoteCard extends StatelessWidget {
                       children: [
                         Text(
                           note.dateToString(),
-                          style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                                fontSize: 10.sp,
-                                color: Theme.of(context).hintColor,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    fontSize: 10.sp,
+                                    color: Theme.of(context).hintColor,
+                                  ),
                         ),
                         4.sW,
                         if (note.isPinned)
-                          Icon(
-                            Icons.push_pin_outlined,
-                            size: 12.sp,
-                            color: Theme.of(context).hintColor,
+                          Transform.rotate(
+                            angle: 45 * (3.1415926535897932 / 180),
+                            child: Icon(
+                              Icons.push_pin_outlined,
+                              size: 12.sp,
+                              color: Theme.of(context).hintColor,
+                            ),
                           ),
                       ],
                     ),
