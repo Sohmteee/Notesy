@@ -14,8 +14,8 @@ class NoteCard extends StatelessWidget {
       note.title.isEmpty ? note.content.split('\n').first.trim() : note.title;
 
   String? get content {
-    if (note.title.tri.isNotEmpty) {
-      return note.content;
+    if (note.title.isNotEmpty) {
+      return note.content.trim().isEmpty ? null : note.content.trim();
     }
     return note.content.split('\n').skip(1).join('\n').trim().isEmpty
         ? null
