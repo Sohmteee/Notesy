@@ -33,7 +33,13 @@ class _NotesScreenState extends State<NotesScreen> {
                     Icons.checklist_rtl_rounded,
                   ),
                   onPressed: () {
-                    if ()
+                    if (context.read<NotesProvider>().selectedNotes.length ==
+                        context.read<NotesProvider>().notes.length) {
+                      for (final note in context.read<NotesProvider>().notes) {
+                        context.read<NotesProvider>().toggleSelected(note);
+                      }
+                    }
+
                     for (final note in context.read<NotesProvider>().notes) {
                       if (!context
                           .read<NotesProvider>()
