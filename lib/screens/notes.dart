@@ -84,19 +84,43 @@ class _NotesScreenState extends State<NotesScreen> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      IconButton(
-                        icon: Icon(
-                          IconlyLight.lock,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
-                        ),
-                        onPressed: () {},
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              IconlyLight.lock,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
+                            ),
+                            onPressed: () {},
+                          ),
+                          Text(
+                            'Hide',
+                            style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
+                            ),
+                          ),
+                        ],
                       ),
-                      IconButton(
-                        icon: Icon(
-                          IconlyLight.delete,
-                          color: Theme.of(context).textTheme.bodyMedium!.color,
-                        ),
-                        onPressed: () {},
+                      Column(
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              IconlyLight.delete,
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
+                            ),
+                            onPressed: () {},
+                          ),
+                          Text(
+                            'Delete',
+                            style: TextStyle(
+                              color:
+                                  Theme.of(context).textTheme.bodyMedium!.color,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
