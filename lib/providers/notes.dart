@@ -75,6 +75,8 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
+  void toggelPinnedNote(N)
+
   void addPinnedNote(Note note) {
     if (_pinnedNotes.length < 3) {
       _pinnedNotes.insert(0, note);

@@ -225,7 +225,13 @@ class _NotesScreenState extends State<NotesScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ZoomTapAnimation(
-                    onTap: () {},
+                    onTap: () {
+                      for (final note
+                          in context.read<NotesProvider>().selectedNotes) {
+                        context.read<NotesProvider>().togglePin(note);
+                      }
+                      context.read<NotesProvider>().clearSelectedNotes();
+                    },
                     child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
