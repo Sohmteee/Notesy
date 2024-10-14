@@ -34,16 +34,14 @@ class _NotesScreenState extends State<NotesScreen> {
                     color:
                         (context.read<NotesProvider>().selectedNotes.length ==
                                 context.read<NotesProvider>().notes.length)
-                            ? Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .color!
-                                .withOpacity(0.5)
+                            ? Theme.of(context).primaryColor
                             : null,
                   ),
                   onPressed: () {
-                    if (context.read<NotesProvider>().selectedNotes.length !=
+                    if (context.read<NotesProvider>().selectedNotes.length ==
                         context.read<NotesProvider>().notes.length) {
+                      context.read<NotesProvider>().clearSelected();
+                    } else {
                       for (final note in context.read<NotesProvider>().notes) {
                         if (!context
                             .read<NotesProvider>()
