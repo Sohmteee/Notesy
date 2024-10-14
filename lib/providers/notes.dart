@@ -3,7 +3,7 @@ import 'package:notesy/res/res.dart';
 class NotesProvider with ChangeNotifier {
   final List<Note> _notes = Note().dummyNotes();
   List<Note> get notes {
-    return _notes;
+    return _notes..sort((a, b) => b.date.compareTo(a.date));
   }
 
   void add(Note note) {

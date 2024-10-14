@@ -80,11 +80,7 @@ class _NotesScreenState extends State<NotesScreen> {
                 itemBuilder: (context, index) {
                   return NoteCard(
                     elevation: 0,
-                    note: context
-                        .watch<NotesProvider>()
-                        .notes
-                        .reversed
-                        .toList()[index],
+                    note: context.watch<NotesProvider>().notes[index],
                   );
                 },
               ),
