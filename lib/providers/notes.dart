@@ -5,10 +5,9 @@ class NotesProvider with ChangeNotifier {
   List<Note> get notes {
     return _notes..sort((a, b) => b.date.compareTo(a.date));
   }
-  
-    List<Note> _selectedNotes = [];
-    List<Note> get selectedNotes => _selectedNotes;
 
+  final List<Note> _selectedNotes = [];
+  List<Note> get selectedNotes => _selectedNotes;
 
   void add(Note note) {
     _notes.add(note);
