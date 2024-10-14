@@ -7,9 +7,8 @@ class Note {
   Note({
     this.title = '',
     this.content = '',
-    
     DateTime? date,
-    this
+    this.isPinned = false,
   }) : date = date ?? DateTime.now();
 
   Note copyWith({
