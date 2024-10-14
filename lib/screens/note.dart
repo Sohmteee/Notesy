@@ -101,7 +101,15 @@ class _NoteScreenState extends State<NoteScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (_title)
+        if (_titleController.text.trim().isNotEmpty ||
+            _contentController.text.trim().isNotEmpty) {
+          final note = widget.note.copyWith(
+            title: _titleController.text,
+            content: _contentController.text,
+            date: DateTime.now(),
+          );
+          context.read<NotesProvider>().add(widget.note, note);
+        }
         return true;
       },
       child: Scaffold(
