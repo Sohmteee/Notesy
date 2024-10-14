@@ -45,6 +45,9 @@ class NoteCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12.r),
         ),
+        color: context.watch<NotesProvider>().selectedNotes.contains(note)
+            ? Theme.of(context).canvasColor
+            : null,
         child: Padding(
           padding: EdgeInsets.all(16.sp),
           child: Row(
