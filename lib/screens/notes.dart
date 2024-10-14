@@ -219,7 +219,7 @@ class _NotesScreenState extends State<NotesScreen> {
                             color: color,
                           ),
                           6.sH,
-                          EditableText(
+                          Text(
                             'Move to',
                             style: TextStyle(
                               fontSize: 12.sp,

@@ -186,9 +186,10 @@ class _NoteScreenState extends State<NoteScreen> {
               ],
             ),
             Expanded(
-              child: TextField(
+              child: EditableText(
                 focusNode: _contentFocusNode,
                 controller: _contentController,
+                cursorColor: Theme.of(context).textSelectionTheme!.cursorColor,
                 style: TextStyle(
                   fontSize: 16.sp,
                 ),
