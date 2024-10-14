@@ -22,7 +22,7 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
           left: toolbarX.clamp(8.0, MediaQuery.of(context).size.width - 200.0),
           top: toolbarY.clamp(8.0, MediaQuery.of(context).size.height - 48.0),
           child: Material(
-            elevation: 4.0,
+            elevation: 4,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(8.r)),
             ),

@@ -68,7 +68,7 @@ final darkTheme = ThemeData(
   useMaterial3: false,
   primaryColor: primaryColor,
   scaffoldBackgroundColor: Colors.black,
-  canvasColor: Colors.white,
+  canvasColor: Colors.grey[900],
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.black,
