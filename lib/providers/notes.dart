@@ -36,6 +36,14 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
+  void toggleSelected(Note note) {
+    if (_selectedNotes.contains(note)) {
+      removeSelected(note);
+    } else {
+      addSelected(note);
+    }
+  }
+
   void addSelected(Note note){
     _selectedNotes.add(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
