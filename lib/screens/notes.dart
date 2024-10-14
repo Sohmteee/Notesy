@@ -91,9 +91,9 @@ class _NotesScreenState extends State<NotesScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                        icon: const Icon(
+                        icon:  Icon(
                           IconlyLight.lock,
-                          color: Theme,
+                          color: Theme.of(context).dividerColor,
                         ),
                         onPressed: () {},
                       ),

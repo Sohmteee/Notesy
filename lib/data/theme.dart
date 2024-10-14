@@ -5,7 +5,7 @@ final lightTheme = ThemeData(
   primaryColor: primaryColor,
   scaffoldBackgroundColor: Colors.grey[100],
   canvasColor: Colors.white,
-  
+  dividerColor: Colors.black,
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.grey[100],
@@ -68,7 +68,7 @@ final darkTheme = ThemeData(
   useMaterial3: false,
   primaryColor: primaryColor,
   scaffoldBackgroundColor: Colors.black,
-  canvasColor: Colors.grey[850],
+  canvasColor: Colors.white,
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.black,
