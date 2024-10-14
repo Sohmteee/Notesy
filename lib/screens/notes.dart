@@ -10,74 +10,85 @@ class NotesScreen extends StatefulWidget {
 class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(context),
-      floatingActionButton: context.watch<NotesProvider>().selectedNotes.isEmpty
-          ? buildFAB(context)
-          : null,
-      bottomNavigationBar: context.watch<NotesProvider>().selectedNotes.isEmpty
-          ? null
-          : buildBottomSheet(context),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        child: Column(
-          children: [
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
-              height: context.watch<NotesProvider>().selectedNotes.isEmpty
-                  ? 0
-                  : 16.h,
-            ),
-            Row(
-              children: [
-                Text(
-                  context.watch<NotesProvider>().selectedNotes.isEmpty
-                      ? 'Notesy'
-                      : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-            16.sH,
-            GestureDetector(
-              onTap: () {
-                if (context.read<NotesProvider>().selectedNotes.isEmpty) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SearchScreen(),
+    return WillPopScope(
+      onWillPop: () async {
+        if (context.read<NotesProvider>().selectedNotes.isNotEmpty) {
+          context.read<NotesProvider>().clearSelected();
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        appBar: buildAppBar(context),
+        floatingActionButton:
+            context.watch<NotesProvider>().selectedNotes.isEmpty
+                ? buildFAB(context)
+                : null,
+        bottomNavigationBar:
+            context.watch<NotesProvider>().selectedNotes.isEmpty
+                ? null
+                : buildBottomSheet(context),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          child: Column(
+            children: [
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
+                height: context.watch<NotesProvider>().selectedNotes.isEmpty
+                    ? 0
+                    : 16.h,
+              ),
+              Row(
+                children: [
+                  Text(
+                    context.watch<NotesProvider>().selectedNotes.isEmpty
+                        ? 'Notesy'
+                        : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                  );
-                }
-              },
-              child: const Hero(
-                tag: 'search',
-                child: Material(
-                  color: Colors.transparent,
-                  child: AppSearchBar(
-                    editable: false,
+                  ),
+                ],
+              ),
+              16.sH,
+              GestureDetector(
+                onTap: () {
+                  if (context.read<NotesProvider>().selectedNotes.isEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const SearchScreen(),
+                      ),
+                    );
+                  }
+                },
+                child: const Hero(
+                  tag: 'search',
+                  child: Material(
+                    color: Colors.transparent,
+                    child: AppSearchBar(
+                      editable: false,
+                    ),
                   ),
                 ),
               ),
-            ),
-            8.sH,
-            Expanded(
-              child: ListView.builder(
-                itemCount: context.watch<NotesProvider>().notes.length,
-                physics: const BouncingScrollPhysics(),
-                padding: EdgeInsets.symmetric(vertical: 8.h),
-                itemBuilder: (context, index) {
-                  return NoteCard(
-                    elevation: 0,
-                    note: context.watch<NotesProvider>().notes[index],
-                  );
-                },
+              8.sH,
+              Expanded(
+                child: ListView.builder(
+                  itemCount: context.watch<NotesProvider>().notes.length,
+                  physics: const BouncingScrollPhysics(),
+                  padding: EdgeInsets.symmetric(vertical: 8.h),
+                  itemBuilder: (context, index) {
+                    return NoteCard(
+                      elevation: 0,
+                      note: context.watch<NotesProvider>().notes[index],
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
