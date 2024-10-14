@@ -45,13 +45,17 @@ class _SearchScreenState extends State<SearchScreen> {
         ],
        */
       ),
-      body: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Container(
-          color: Colors.transparent,
-        ),
+      body: Stack(
+        children: [
+          GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: Container(
+              color: Colors.transparent,
+            ),
+          ),
+        ],
       ),
     );
   }
