@@ -400,14 +400,17 @@ class _NotesScreenState extends State<NotesScreen> {
                 context.watch<NotesProvider>().pinLimit -
                     context.watch<NotesProvider>().pinnedNotes.length)
             ? () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    
-                    content: Text(
-                      'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
+                ScaffoldMessenger.of(context)
+                  ..hideCurrentSnackBar()
+                  ..showSnackBar(
+                    SnackBar(
+                      showCloseIcon: true,
+                      closeIconColor: Theme.of(context).cardColor,
+                      content: Text(
+                        'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
+                      ),
                     ),
-                  ),
-                );
+                  );
               }
             : () {
                 for (final note
