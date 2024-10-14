@@ -20,7 +20,6 @@ class _NoteScreenState extends State<NoteScreen> {
   late TextEditingController _contentController;
 
   bool canUndo = false, canRedo = false;
-  String noteTime = DateFormat('dd MMMM hh:mm a').format(widget.note.date);
 
   final List<String> _undoStack = [];
   final List<String> _redoStack = [];
@@ -99,6 +98,8 @@ class _NoteScreenState extends State<NoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String noteTime = DateFormat('dd MMMM hh:mm a').format(widget.note.date);
+
     return WillPopScope(
       onWillPop: () async {
         if (_titleController.text.trim().isNotEmpty ||
