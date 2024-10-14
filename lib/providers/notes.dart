@@ -18,11 +18,12 @@ class NotesProvider with ChangeNotifier {
   final List<Note> _selectedNotes = [];
   List<Note> get selectedNotes => _selectedNotes;
 
-  final List<Note> _pinnedNotes = [];
+  final List<Note> _pinnedNotes = box.get('pinnedNotes', defaultValue: <Note>[]);
   List<Note> get pinnedNotes => _pinnedNotes;
 
   void addNote(Note note) {
     _notes.add(note);
+    
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
