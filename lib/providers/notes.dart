@@ -32,8 +32,11 @@ class NotesProvider with ChangeNotifier {
   }
 
   void removeNote(Note note) {
-    if (_pinnedNotes)
-    _notes.remove(note);
+    if (_pinnedNotes.contains(note)) {
+      deletePinnedNote(note);
+    } else {
+      _notes.remove(note);
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
