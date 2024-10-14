@@ -221,17 +221,20 @@ class _NotesScreenState extends State<NotesScreen> {
                   ),
                 ],
               ),
-              if (context
-                      .watch<NotesProvider>()
-                      .selectedNotes
-                      .where((selectedNote) => !context
-                          .read<NotesProvider>()
-                          .pinnedNotes
-                          .contains(selectedNote))
-                      .length <=
-                  context.watch<NotesProvider>().pinLimit -
-                      context.watch<NotesProvider>().pinnedNotes.length)
-                Column(
+              Opacity(
+                opacity: (context
+                            .watch<NotesProvider>()
+                            .selectedNotes
+                            .where((selectedNote) => !context
+                                .read<NotesProvider>()
+                                .pinnedNotes
+                                .contains(selectedNote))
+                            .length <=
+                        context.watch<NotesProvider>().pinLimit -
+                            context.watch<NotesProvider>().pinnedNotes.length)
+                    ? 1
+                    : 0.5,
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ZoomTapAnimation(
@@ -317,6 +320,7 @@ class _NotesScreenState extends State<NotesScreen> {
                     ),
                   ],
                 ),
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
