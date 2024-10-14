@@ -11,57 +11,13 @@ class _NotesScreenState extends State<NotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 32.h,
-        leading: context.watch<NotesProvider>().selectedNotes.isNotEmpty
-            ? CloseButton(
-                onPressed: () {
-                  context.read<NotesProvider>().clearSelected();
-                },
-              )
-            : null,
-        actions: [
-          context.watch<NotesProvider>().selectedNotes.isEmpty
-              ? IconButton(
-                  icon: const Icon(
-                    IconlyLight.setting,
-                  ),
-                  onPressed: () {},
-                )
-              : IconButton(
-                  icon: Icon(
-                    Icons.checklist_rtl_rounded,
-                    color:
-                        (context.read<NotesProvider>().selectedNotes.length ==
-                                context.read<NotesProvider>().notes.length)
-                            ? Theme.of(context).primaryColor
-                            : null,
-                  ),
-                  onPressed: () {
-                    if (context.read<NotesProvider>().selectedNotes.length ==
-                        context.read<NotesProvider>().notes.length) {
-                      context.read<NotesProvider>().clearSelected();
-                    } else {
-                      for (final note in context.read<NotesProvider>().notes) {
-                        if (!context
-                            .read<NotesProvider>()
-                            .selectedNotes
-                            .contains(note)) {
-                          context.read<NotesProvider>().addSelected(note);
-                        }
-                      }
-                    }
-                  },
-                ),
-          16.sW,
-        ],
-      ),
+      appBar: buildAppBar(context),
       floatingActionButton: context.watch<NotesProvider>().selectedNotes.isEmpty
           ? buildFAB(context)
           : null,
       bottomNavigationBar: context.watch<NotesProvider>().selectedNotes.isEmpty
           ? null
-          : buildBotomSheet(context),
+          : buildBottomSheet(context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
@@ -127,26 +83,73 @@ class _NotesScreenState extends State<NotesScreen> {
     );
   }
 
-  FloatingActionButton buildFAB(BuildContext context) {
-    return FloatingActionButton(
-            backgroundColor: Theme.of(context).primaryColor,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NoteScreen(
-                    Note(),
-                  ),
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      toolbarHeight: 32.h,
+      leading: context.watch<NotesProvider>().selectedNotes.isNotEmpty
+          ? CloseButton(
+              onPressed: () {
+                context.read<NotesProvider>().clearSelected();
+              },
+            )
+          : null,
+      actions: [
+        context.watch<NotesProvider>().selectedNotes.isEmpty
+            ? IconButton(
+                icon: const Icon(
+                  IconlyLight.setting,
                 ),
-              );
-            },
-            child: const Icon(
-              Icons.add,
-            ),
-          );
+                onPressed: () {},
+              )
+            : IconButton(
+                icon: Icon(
+                  Icons.checklist_rtl_rounded,
+                  color: (context.read<NotesProvider>().selectedNotes.length ==
+                          context.read<NotesProvider>().notes.length)
+                      ? Theme.of(context).primaryColor
+                      : null,
+                ),
+                onPressed: () {
+                  if (context.read<NotesProvider>().selectedNotes.length ==
+                      context.read<NotesProvider>().notes.length) {
+                    context.read<NotesProvider>().clearSelected();
+                  } else {
+                    for (final note in context.read<NotesProvider>().notes) {
+                      if (!context
+                          .read<NotesProvider>()
+                          .selectedNotes
+                          .contains(note)) {
+                        context.read<NotesProvider>().addSelected(note);
+                      }
+                    }
+                  }
+                },
+              ),
+        16.sW,
+      ],
+    );
   }
 
-  BottomSheet buildBotomSheet(BuildContext context) {
+  FloatingActionButton buildFAB(BuildContext context) {
+    return FloatingActionButton(
+      backgroundColor: Theme.of(context).primaryColor,
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => NoteScreen(
+              Note(),
+            ),
+          ),
+        );
+      },
+      child: const Icon(
+        Icons.add,
+      ),
+    );
+  }
+
+  BottomSheet buildBottomSheet(BuildContext context) {
     return BottomSheet(
       onClosing: () {},
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
