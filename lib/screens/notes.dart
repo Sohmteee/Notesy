@@ -122,7 +122,7 @@ class _NotesScreenState extends State<NotesScreen> {
                             child: Column(
                               children: [
                                 Icon(
-                                  Icons.pin,
+                                  Icons.push_pin_outlined,
                                   size: 20.sp,
                                   color: color,
                                 ),
