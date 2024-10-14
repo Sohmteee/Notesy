@@ -92,7 +92,7 @@ class _NotesScreenState extends State<NotesScreen> {
                     children: [
                       IconButton(
                         icon: const Icon(
-                          Icons.copy,
+                          IconlyLight.lock,
                         ),
                         onPressed: () {},
                       ),
