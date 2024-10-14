@@ -73,7 +73,6 @@ class _NotesScreenState extends State<NotesScreen> {
           ? null
           : BottomSheet(
               onClosing: () {},
-              
               builder: (context) {
                 return Container(
                   height: 64.h,
@@ -89,45 +88,25 @@ class _NotesScreenState extends State<NotesScreen> {
                     ],
                   ),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      TextButton(
-                        onPressed: () {
-                          context.read<NotesProvider>().removeSelected(context
-                              .read<NotesProvider>()
-                              .selectedNotes
-                              .first);
-                        },
-                        child: Text(
-                          'Delete',
-                          style: TextStyle(
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.copy,
                         ),
+                        onPressed: () {},
                       ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => NoteScreen(
-                                context
-                                    .read<NotesProvider>()
-                                    .selectedNotes
-                                    .first,
-                              ),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'Edit',
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.archive,
                         ),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.delete,
+                        ),
+                        onPressed: () {},
                       ),
                     ],
                   ),
