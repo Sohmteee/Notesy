@@ -18,7 +18,8 @@ class NotesProvider with ChangeNotifier {
   final List<Note> _selectedNotes = [];
   List<Note> get selectedNotes => _selectedNotes;
 
-  final List<Note> _pinnedNotes = box.get('pinnedNotes', defaultValue: <Note>[]);
+  final List<Note> _pinnedNotes =
+      box.get('pinnedNotes', defaultValue: <Note>[]);
   List<Note> get pinnedNotes => _pinnedNotes;
 
   void addNote(Note note) {
@@ -86,6 +87,7 @@ class NotesProvider with ChangeNotifier {
 
   void clearSelectedNotes() {
     _selectedNotes.clear();
+    box.put('selectedNotes', _selectedNotes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
@@ -94,7 +96,9 @@ class NotesProvider with ChangeNotifier {
   void addPinnedNote(Note note) {
     if (_pinnedNotes.length < _pinLimit) {
       _pinnedNotes.insert(0, note);
+      box.put('pinnedNotes', _pinnedNotes);
       _notes.remove(note);
+      box.put('notes', _notes);
       WidgetsBinding.instance.addPostFrameCallback((_) {
         notifyListeners();
       });
@@ -103,6 +107,7 @@ class NotesProvider with ChangeNotifier {
 
   void deletePinnedNote(Note note) {
     _pinnedNotes.remove(note);
+    box.put('pinnedNotes', _pinnedNotes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
@@ -110,7 +115,9 @@ class NotesProvider with ChangeNotifier {
 
   void removePinnedNote(Note note) {
     _pinnedNotes.remove(note);
+    box.put('pinnedNotes', _pinnedNotes);
     _notes.add(note);
+    box.put('notes', _notes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
