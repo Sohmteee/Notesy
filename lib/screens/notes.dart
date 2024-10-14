@@ -70,7 +70,7 @@ class _NotesScreenState extends State<NotesScreen> {
             )
           : null,
 
-          bottom
+          bottomSheet: context.watch<NotesProvider>().selectedNotes.isEmpty ? null : Bottom,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
