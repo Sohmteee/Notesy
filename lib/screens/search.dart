@@ -22,8 +22,12 @@ class _SearchScreenState extends State<SearchScreen> {
         _searchNotes.addAll(context.read<NotesProvider>().pinnedNotes
           ..addAll(context.read<NotesProvider>().notes));
         _searchNotes.removeWhere((note) {
-          return !note.title.toLowerCase().contains(_searchController.text.toLowerCase()) &&
-              !note.content.toLowerCase().contains(_searchController.text.toLowerCase());
+          return !note.title
+                  .toLowerCase()
+                  .contains(_searchController.text.toLowerCase()) &&
+              !note.content
+                  .toLowerCase()
+                  .contains(_searchController.text.toLowerCase());
         });
       });
     });
@@ -47,14 +51,23 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Stack(
         children: [
-          GestureDetector(
-            onTap: () {
-              Navigator.pop(context);
+          ListView.builder(
+            padding: EdgeInsets.only(top: 16.h),
+            itemCount: _searchNotes.length,
+            itemBuilder: (context, index) {
+              final note = _searchNotes[index];
+              return NoteCard(note: note);
             },
-            child: Container(
-              color: Colors.transparent,
-            ),
           ),
+          if (_searchController.text.trim().isEmpty)
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                color: Colors.transparent,
+              ),
+            ),
         ],
       ),
     );
