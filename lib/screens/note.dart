@@ -205,6 +205,7 @@ class _NoteScreenState extends State<NoteScreen> {
                 maxLines: null,
                 cursorOpacityAnimates: true,
                 selectionControls: CustomTextSelectionControls(),
+                
                 /* decoration: InputDecoration(
                   border: InputBorder.none,
                   contentPadding:
