@@ -20,22 +20,24 @@ class _NotesScreenState extends State<NotesScreen> {
           16.sW,
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Theme.of(context).primaryColor,
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => NoteScreen(
-                Note(),
+      floatingActionButton: context.watch<NotesProvider>().selectedNotes.isEmpty
+          ? FloatingActionButton(
+              backgroundColor: Theme.of(context).primaryColor,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NoteScreen(
+                      Note(),
+                    ),
+                  ),
+                );
+              },
+              child: const Icon(
+                Icons.add,
               ),
-            ),
-          );
-        },
-        child: const Icon(
-          Icons.add,
-        ),
-      ),
+            )
+          : null,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
