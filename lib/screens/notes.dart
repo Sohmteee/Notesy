@@ -75,7 +75,11 @@ class _NotesScreenState extends State<NotesScreen> {
               onClosing: () {},
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
               builder: (context) {
-                final color = Theme.of(context).textTheme.bodyMedium!.color.withOpacity(0.5);
+                final color = Theme.of(context)
+                    .textTheme
+                    .bodyMedium!
+                    .color!
+                    .withOpacity(0.5);
                 return Container(
                   height: 64.h,
                   padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -95,20 +99,14 @@ class _NotesScreenState extends State<NotesScreen> {
                                 Icon(
                                   IconlyLight.lock,
                                   size: 20.sp,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .color,
+                                  color: color,
                                 ),
                                 6.sH,
                                 Text(
                                   'Hide',
                                   style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .color,
+                                    color: color,
                                   ),
                                 ),
                               ],
@@ -126,20 +124,14 @@ class _NotesScreenState extends State<NotesScreen> {
                                 Icon(
                                   IconlyLight.delete,
                                   size: 20.sp,
-                                  color: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium!
-                                      .color,
+                                  color: color,
                                 ),
                                 6.sH,
                                 Text(
                                   'Delete',
                                   style: TextStyle(
                                     fontSize: 12.sp,
-                                    color: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .color,
+                                    color: color,
                                   ),
                                 ),
                               ],
