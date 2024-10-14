@@ -22,11 +22,23 @@ class _NotesScreenState extends State<NotesScreen> {
             : null,
         actions: [
           context.watch<NotesProvider>().selectedNotes.isEmpty
-              ? const Icon(
-                  IconlyLight.setting,
+              ? IconButton(
+                  icon: const Icon(
+                    IconlyLight.setting,
+                  ),
+                  onPressed: () {},
                 )
-              : const Icon(
-                  Icons.checklist_rtl_rounded,
+              : IconButton(
+                  icon: const Icon(
+                    Icons.checklist_rtl_rounded,
+                  ),
+                  onPressed: () {
+                    for (final note in context.read<NotesProvider>().notes) {
+                      if (context.read<NotesProvider>().selectedNotes.contains(note)) {
+                        context.read<NotesProvider>().toggleSelected(note);
+                      }
+                    }
+                  },
                 ),
           16.sW,
         ],
