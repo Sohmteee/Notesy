@@ -253,7 +253,9 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
                 onTapOutside: (_) => _contentFocusNode.unfocus(),
                 onChanged: (value) {
-                  setState(() {});
+                  setState(() {
+                    _handleUndoRedo();
+                  });
                 },
                 textCapitalization: TextCapitalization.sentences,
                 maxLines: null,
