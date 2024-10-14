@@ -10,7 +10,7 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  final List<Note> _notes = box.get('notes', defaultValue: [])<Note>();
+  final List<Note> _notes = box.get('notes', defaultValue: <Note>[]);
   List<Note> get notes {
     return _notes..sort((a, b) => b.date.compareTo(a.date));
   }
