@@ -84,7 +84,9 @@ class NoteCard extends StatelessWidget {
                   ),
                 ],
               ),
-              
+              if (context.watch<NotesProvider>().selectedNotes.contains(note))
+                const Checkbox(value: true, onChanged: (onChange))
+
             ],
           ),
         ),
