@@ -216,7 +216,6 @@ class _NoteScreenState extends State<NoteScreen> {
                 ),
               ),
             ),
-            4.sH,
             Row(
               children: [
                 16.sW,
