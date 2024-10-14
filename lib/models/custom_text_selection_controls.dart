@@ -29,7 +29,7 @@ class CustomTextSelectionControls extends MaterialTextSelectionControls {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               decoration: BoxDecoration(
-                color: Theme.of(context).canvasColor,
+                color: Theme.of(context).popupMenuTheme.color,
                 borderRadius: BorderRadius.circular(8.r),
               ),
               child: Row(
