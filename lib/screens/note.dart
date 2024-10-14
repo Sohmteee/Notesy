@@ -101,11 +101,7 @@ class _NoteScreenState extends State<NoteScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        if (_titleFocusNode.hasFocus || _contentFocusNode.hasFocus) {
-          _titleFocusNode.unfocus();
-          _contentFocusNode.unfocus();
-          return false;
-        }
+        context.read<NotesProvider>().notes.add
         return true;
       },
       child: Scaffold(
