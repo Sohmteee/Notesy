@@ -57,125 +57,11 @@ class _NotesScreenState extends State<NotesScreen> {
         ],
       ),
       floatingActionButton: context.watch<NotesProvider>().selectedNotes.isEmpty
-          ? FloatingActionButton(
-              backgroundColor: Theme.of(context).primaryColor,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => NoteScreen(
-                      Note(),
-                    ),
-                  ),
-                );
-              },
-              child: const Icon(
-                Icons.add,
-              ),
-            )
+          ? buildFAB(context)
           : null,
       bottomNavigationBar: context.watch<NotesProvider>().selectedNotes.isEmpty
           ? null
-          : BottomSheet(
-              onClosing: () {},
-              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-              builder: (context) {
-                final color = Theme.of(context)
-                    .textTheme
-                    .bodyMedium!
-                    .color!
-                    .withOpacity(0.7);
-                return Container(
-                  height: 64.h,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).scaffoldBackgroundColor,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ZoomTapAnimation(
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                Icon(
-                                  IconlyLight.lock,
-                                  size: 20.sp,
-                                  color: color,
-                                ),
-                                6.sH,
-                                Text(
-                                  'Hide',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: color,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ZoomTapAnimation(
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                Icon(
-                                  Icons.push_pin_outlined,
-                                  size: 20.sp,
-                                  color: color,
-                                ),
-                                6.sH,
-                                Text(
-                                  'Pin',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: color,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          ZoomTapAnimation(
-                            onTap: () {},
-                            child: Column(
-                              children: [
-                                Icon(
-                                  IconlyLight.delete,
-                                  size: 20.sp,
-                                  color: color,
-                                ),
-                                6.sH,
-                                Text(
-                                  'Delete',
-                                  style: TextStyle(
-                                    fontSize: 12.sp,
-                                    color: color,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              },
-            ),
-      
-      
+          : buildBotomSheet(context),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
@@ -238,6 +124,123 @@ class _NotesScreenState extends State<NotesScreen> {
           ],
         ),
       ),
+    );
+  }
+
+  FloatingActionButton buildFAB(BuildContext context) {
+    return FloatingActionButton(
+            backgroundColor: Theme.of(context).primaryColor,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NoteScreen(
+                    Note(),
+                  ),
+                ),
+              );
+            },
+            child: const Icon(
+              Icons.add,
+            ),
+          );
+  }
+
+  BottomSheet buildBotomSheet(BuildContext context) {
+    return BottomSheet(
+      onClosing: () {},
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      builder: (context) {
+        final color =
+            Theme.of(context).textTheme.bodyMedium!.color!.withOpacity(0.7);
+        return Container(
+          height: 64.h,
+          padding: EdgeInsets.symmetric(horizontal: 16.w),
+          decoration: BoxDecoration(
+            color: Theme.of(context).scaffoldBackgroundColor,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ZoomTapAnimation(
+                    onTap: () {},
+                    child: Column(
+                      children: [
+                        Icon(
+                          IconlyLight.lock,
+                          size: 20.sp,
+                          color: color,
+                        ),
+                        6.sH,
+                        Text(
+                          'Hide',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: color,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ZoomTapAnimation(
+                    onTap: () {},
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.push_pin_outlined,
+                          size: 20.sp,
+                          color: color,
+                        ),
+                        6.sH,
+                        Text(
+                          'Pin',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: color,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ZoomTapAnimation(
+                    onTap: () {},
+                    child: Column(
+                      children: [
+                        Icon(
+                          IconlyLight.delete,
+                          size: 20.sp,
+                          color: color,
+                        ),
+                        6.sH,
+                        Text(
+                          'Delete',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            color: color,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
