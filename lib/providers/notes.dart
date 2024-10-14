@@ -57,4 +57,11 @@ class NotesProvider with ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void clearSelected() {
+    _selectedNotes.clear();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
 }

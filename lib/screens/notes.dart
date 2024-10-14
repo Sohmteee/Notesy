@@ -13,7 +13,13 @@ class _NotesScreenState extends State<NotesScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 32.h,
-        leading: context.watch<NotesProvider>().selectedNotes.isEmpty ? : null
+        leading: context.watch<NotesProvider>().selectedNotes.isNotEmpty
+            ? const CloseButton(
+              onPressed: () {
+                context.read<NotesProvider>().clearSelected();
+              },
+            )
+            : null,
         actions: [
           context.watch<NotesProvider>().selectedNotes.isEmpty
               ? const Icon(
