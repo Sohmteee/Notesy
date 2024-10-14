@@ -238,62 +238,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ZoomTapAnimation(
-                      onTap: context.watch<NotesProvider>().selectedNotes.every(
-                              (note) => context
-                                  .watch<NotesProvider>()
-                                  .pinnedNotes
-                                  .contains(note))
-                          ? () {
-                              for (final note in context
-                                  .read<NotesProvider>()
-                                  .selectedNotes) {
-                                context
-                                    .read<NotesProvider>()
-                                    .removePinnedNote(note);
-                              }
-                              context
-                                  .read<NotesProvider>()
-                                  .clearSelectedNotes();
-                            }
-                          : (context
-                                      .watch<NotesProvider>()
-                                      .selectedNotes
-                                      .where((selectedNote) => !context
-                                          .read<NotesProvider>()
-                                          .pinnedNotes
-                                          .contains(selectedNote))
-                                      .length >
-                                  context.watch<NotesProvider>().pinLimit -
-                                      context
-                                          .watch<NotesProvider>()
-                                          .pinnedNotes
-                                          .length)
-                              ? () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'You can only pin ${context.read<NotesProvider>().pinLimit} notes',
-                                      ),
-                                    ),
-                                  );
-                                }
-                              : () {
-                                  for (final note in context
-                                      .read<NotesProvider>()
-                                      .selectedNotes) {
-                                    if (!context
-                                        .read<NotesProvider>()
-                                        .pinnedNotes
-                                        .contains(note)) {
-                                      context
-                                          .read<NotesProvider>()
-                                          .addPinnedNote(note);
-                                    }
-                                  }
-                                  context
-                                      .read<NotesProvider>()
-                                      .clearSelectedNotes();
-                                },
+                      onTap: handlePin(context),
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 16.w),
                         child: Column(
