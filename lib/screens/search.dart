@@ -55,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Stack(
         children: [
-          ListView.builder(
+       _searchNotes.isEmpty ? Center :   ListView.builder(
             padding: EdgeInsets.only(top: 16.h),
             itemCount: _searchNotes.length,
             itemBuilder: (context, index) {
@@ -69,7 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 Navigator.pop(context);
               },
               child: Container(
-                color: Colors.black38,
+                color: Colors.black87,
               ),
             ),
         ],
