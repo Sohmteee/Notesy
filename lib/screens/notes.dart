@@ -58,12 +58,14 @@ class _NotesScreenState extends State<NotesScreen> {
             16.sH,
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SearchScreen(),
-                  ),
-                );
+                if (context.watch<NotesProvider>().selectedNotes.isEmpty) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SearchScreen(),
+                    ),
+                  );
+                }
               },
               child: const Hero(
                 tag: 'search',
