@@ -40,11 +40,13 @@ class _NotesScreenState extends State<NotesScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           children: [
-            const Row(
+            Row(
               children: [
                 Text(
-                  'Notesy',
-                  style: TextStyle(
+                  context.watch<NotesProvider>().selectedNotes.isEmpty
+                      ? 'Notesy'
+                      : '${context.watch<NotesProvider>().selectedNotes.length} selected',
+                  style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
