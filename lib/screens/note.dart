@@ -135,6 +135,8 @@ class _NoteScreenState extends State<NoteScreen> {
                 setState(() {});
               },
               textCapitalization: TextCapitalization.sentences,
+              cursorOpacityAnimates: true,
+              selectionControls: CustomTextSelectionControls(),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -220,86 +222,86 @@ class _NoteScreenState extends State<NoteScreen> {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-        backgroundColor: Theme.of(context).cardColor,
-        toolbarHeight: 48.h,
-        actions: [
-          IconButton(
-            onPressed: canUndo ? _undo : null,
-            splashColor: Colors.transparent,
-            splashRadius: 1,
-            icon: Icon(
-              Icons.undo_rounded,
-              color: canUndo ? null : Theme.of(context).hintColor,
-            ),
+      backgroundColor: Theme.of(context).cardColor,
+      toolbarHeight: 48.h,
+      actions: [
+        IconButton(
+          onPressed: canUndo ? _undo : null,
+          splashColor: Colors.transparent,
+          splashRadius: 1,
+          icon: Icon(
+            Icons.undo_rounded,
+            color: canUndo ? null : Theme.of(context).hintColor,
           ),
-          8.sW,
-          IconButton(
-            onPressed: canRedo ? _redo : null,
-            splashColor: Colors.transparent,
-            splashRadius: 1,
-            icon: Icon(
-              Icons.redo_rounded,
-              color: canRedo ? null : Theme.of(context).hintColor,
-            ),
+        ),
+        8.sW,
+        IconButton(
+          onPressed: canRedo ? _redo : null,
+          splashColor: Colors.transparent,
+          splashRadius: 1,
+          icon: Icon(
+            Icons.redo_rounded,
+            color: canRedo ? null : Theme.of(context).hintColor,
           ),
-          8.sW,
-          PopupMenuButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            onSelected: (value) {
-              switch (value) {
-                case 'share':
-                  break;
-                case 'delete':
-                  context.read<NotesProvider>().remove(widget.note);
-                  Navigator.pop(context);
-                  break;
-              }
-            },
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  value: 'share',
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.share_outlined,
-                        size: 20.sp,
+        ),
+        8.sW,
+        PopupMenuButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          onSelected: (value) {
+            switch (value) {
+              case 'share':
+                break;
+              case 'delete':
+                context.read<NotesProvider>().remove(widget.note);
+                Navigator.pop(context);
+                break;
+            }
+          },
+          itemBuilder: (context) {
+            return [
+              PopupMenuItem(
+                value: 'share',
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.share_outlined,
+                      size: 20.sp,
+                    ),
+                    8.sW,
+                    Text(
+                      'Share',
+                      style: TextStyle(
+                        fontSize: 16.sp,
                       ),
-                      8.sW,
-                      Text(
-                        'Share',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                PopupMenuItem(
-                  value: 'delete',
-                  child: Row(
-                    children: [
-                      Icon(
-                        IconlyLight.delete,
-                        size: 20.sp,
+              ),
+              PopupMenuItem(
+                value: 'delete',
+                child: Row(
+                  children: [
+                    Icon(
+                      IconlyLight.delete,
+                      size: 20.sp,
+                    ),
+                    8.sW,
+                    Text(
+                      'Delete',
+                      style: TextStyle(
+                        fontSize: 16.sp,
                       ),
-                      8.sW,
-                      Text(
-                        'Delete',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-              ];
-            },
-          ),
-          8.sW,
-        ],
-      );
+              ),
+            ];
+          },
+        ),
+        8.sW,
+      ],
+    );
   }
 }
