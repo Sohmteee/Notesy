@@ -107,7 +107,7 @@ class _NoteScreenState extends State<NoteScreen> {
             title: _titleController.text.trim().isNotEmpty
                 ? _titleController.text.trim()
                 : _contentController.text.trim().split('\n').first.trim(),
-            content:  _contentController.text.trim().split('\n')..remove()
+            content:  _contentController.text.trim().split('\n').remove('')..join('\n')
                     ,
             date: (_titleController.text.trim() == widget.note.title.trim() &&
                     _contentController.text.trim() == widget.note.content)
