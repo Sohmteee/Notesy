@@ -36,11 +36,15 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  
+  void addSelected(Note note){
+    _selectedNotes.add(note);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
 
-  void removeSelected() {
-    _notes.removeWhere((note) => _selectedNotes.contains(note));
-    _selectedNotes.clear();
+  void removeSelected(Note note) {
+    _selectedNotes.remove(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
