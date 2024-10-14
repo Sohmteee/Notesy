@@ -32,15 +32,16 @@ class Note {
     return other is Note &&
         other.title == title &&
         other.content == content &&
-        other.date == date;
-    other.isPinned == isPinned;
+        other.date == date &&
+        other.isPinned == isPinned;
   }
 
   @override
   int get hashCode => title.hashCode ^ content.hashCode ^ date.hashCode;
 
   @override
-  String toString() => 'Note title: $title, content: $content, date: $date, isPinned: $isPinned';
+  String toString() =>
+      'Note title: $title, content: $content, date: $date, isPinned: $isPinned';
 
   Note.fromJson(Map<String, dynamic> json)
       : title = json['title'],
