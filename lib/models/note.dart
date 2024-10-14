@@ -15,11 +15,13 @@ class Note {
     String? title,
     String? content,
     DateTime? date,
+    bool? isPinned,
   }) {
     return Note(
       title: title ?? this.title,
       content: content ?? this.content,
       date: date ?? this.date,
+      isPinned: isPinne
     );
   }
 
