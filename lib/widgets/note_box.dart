@@ -13,6 +13,14 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ZoomTapAnimation(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const NoteScreen(),
+          ),
+        );
+      },
       child: Card(
         elevation: elevation,
         shape: RoundedRectangleBorder(

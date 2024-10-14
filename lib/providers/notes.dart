@@ -11,7 +11,13 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  void update(Note currentN)
+  void update(Note currentNote, Note newNote) {
+    final index = _notes.indexOf(currentNote);
+    _notes[index] = newNote;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
 
   void remove(Note note) {
     _notes.remove(note);

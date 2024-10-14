@@ -3,9 +3,8 @@ import 'package:notesy/models/custom_text_selection_controls.dart';
 import 'package:notesy/res/res.dart';
 
 class NoteScreen extends StatefulWidget {
-  const NoteScreen({
+  const NoteScreen(this.note,{
     super.key,
-    required this.note,
   });
 
   final Note note;
