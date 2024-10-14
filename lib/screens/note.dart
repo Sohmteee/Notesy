@@ -162,7 +162,7 @@ class _NoteScreenState extends State<NoteScreen> {
                       children: [
                         Icon(
                           Icons.share_outlined,
-                          size: 20.sp,
+                          size: 18.sp,
                         ),
                         8.sW,
                         Text(
@@ -180,7 +180,7 @@ class _NoteScreenState extends State<NoteScreen> {
                       children: [
                         Icon(
                           IconlyLight.delete,
-                          size: 20.sp,
+                          size: 18.sp,
                         ),
                         8.sW,
                         Text(
