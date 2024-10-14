@@ -67,13 +67,13 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  void togglePinnedNote(Note note) {
+ /*  void togglePinnedNote(Note note) {
     if (_pinnedNotes.contains(note)) {
       removePinnedNote(note);
     } else {
       addPinnedNote(note);
     }
-  }
+  } */
 
   void addPinnedNote(Note note) {
     if (_pinnedNotes.length < 3) {
