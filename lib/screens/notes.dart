@@ -259,7 +259,21 @@ class _NotesScreenState extends State<NotesScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      TextButton(
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'Cancel',
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color,
+                                          ),
+                                        ),
+                                      ),     TextButton(
                                         onPressed: () {
                                           for (final note in context
                                               .read<NotesProvider>()
@@ -277,25 +291,11 @@ class _NotesScreenState extends State<NotesScreen> {
                                           'Delete',
                                           style: TextStyle(
                                             fontSize: 16.sp,
-                                            // color: Theme.of(context).errorColor,
+                                            color: Theme.of(context).primary,
                                           ),
                                         ),
                                       ),
-                                      TextButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text(
-                                          'Cancel',
-                                          style: TextStyle(
-                                            fontSize: 16.sp,
-                                            color: Theme.of(context)
-                                                .textTheme
-                                                .bodyMedium!
-                                                .color,
-                                          ),
-                                        ),
-                                      ),
+                                   
                                     ],
                                   ),
                                 ],
