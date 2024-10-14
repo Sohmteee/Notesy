@@ -67,7 +67,7 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
- /*  void togglePinnedNote(Note note) {
+  /*  void togglePinnedNote(Note note) {
     if (_pinnedNotes.contains(note)) {
       removePinnedNote(note);
     } else {
@@ -78,6 +78,7 @@ class NotesProvider with ChangeNotifier {
   void addPinnedNote(Note note) {
     if (_pinnedNotes.length < 3) {
       _pinnedNotes.insert(0, note);
+      _notes.remove(note);
       WidgetsBinding.instance.addPostFrameCallback((_) {
         notifyListeners();
       });
@@ -86,6 +87,7 @@ class NotesProvider with ChangeNotifier {
 
   void removePinnedNote(Note note) {
     _pinnedNotes.remove(note);
+    _notes.add(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
