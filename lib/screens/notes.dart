@@ -13,7 +13,9 @@ class _NotesScreenState extends State<NotesScreen> {
     return WillPopScope(
       onWillPop: () async {
         if (context.read<NotesProvider>().selectedNotes.isNotEmpty) {
-          context.read<NotesProvider>().clearSelected();
+          setState(() {
+            context.read<NotesProvider>().clearSelected();
+          });
           return false;
         }
         return true;
