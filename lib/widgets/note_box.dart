@@ -28,16 +28,16 @@ class NoteCard extends StatelessWidget {
       onTap: () {
         if (context.read<NotesProvider>().selectedNotes.isEmpty) {
           Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => NoteScreen(note),
-          ),
-        );
+            context,
+            MaterialPageRoute(
+              builder: (context) => NoteScreen(note),
+            ),
+          );
+        } else {
+          context.read<NotesProvider>().selectedNotes.add(note);
         }
       },
-      onLongTap: () {
-
-      },
+      onLongTap: () {},
       child: Card(
         elevation: elevation,
         shape: RoundedRectangleBorder(
