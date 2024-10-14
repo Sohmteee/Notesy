@@ -98,7 +98,6 @@ class NoteCard extends StatelessWidget {
                   side: BorderSide.none,
                   activeColor: Theme.of(context).primaryColor,
                   checkColor: Colors.white,
-                  
                   fillColor: MaterialStateProperty.resolveWith(
                     (states) {
                       if (states.contains(MaterialState.selected)) {
