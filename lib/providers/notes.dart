@@ -8,7 +8,9 @@ class NotesProvider with ChangeNotifier {
 
   final List<Note> _selectedNotes = [];
   List<Note> get selectedNotes => _selectedNotes;
-  
+
+  final List<Note> _pinnedNotes = [];
+  List<Note> get pinnedNotes => _pinnedNotes;
 
   void add(Note note) {
     _notes.add(note);
@@ -44,7 +46,7 @@ class NotesProvider with ChangeNotifier {
     }
   }
 
-  void addSelected(Note note){
+  void addSelected(Note note) {
     _selectedNotes.add(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
