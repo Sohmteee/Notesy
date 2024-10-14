@@ -34,11 +34,11 @@ class NoteCard extends StatelessWidget {
             ),
           );
         } else {
-          context.read<NotesProvider>().selectedNotes.add(note);
+          context.read<NotesProvider>().addSelected(note);
         }
       },
       onLongTap: () {
-        context.read<NotesProvider>().selectedNotes.add(note);
+        context.read<NotesProvider>().addSelected(note);
       },
       child: Card(
         elevation: elevation,
