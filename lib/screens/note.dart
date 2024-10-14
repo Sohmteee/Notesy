@@ -1,11 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_quill/flutter_quill.dart' hide Text;
 import 'package:intl/intl.dart';
 import 'package:notesy/models/custom_text_selection_controls.dart';
 import 'package:notesy/res/res.dart';
-import 'package:provider/provider.dart';
 
 class NoteScreen extends StatefulWidget {
   const NoteScreen(
@@ -336,7 +333,6 @@ class _NoteScreenState extends State<NoteScreen> {
                       style: TextStyle(
                         fontSize: 16.sp,
                       ),
-
                     ),
                   ],
                 ),
