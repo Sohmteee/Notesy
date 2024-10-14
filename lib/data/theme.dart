@@ -68,7 +68,7 @@ final darkTheme = ThemeData(
   useMaterial3: false,
   primaryColor: primaryColor,
   scaffoldBackgroundColor: Colors.black,
-  canvasColor: Colors.grey[850],
+  canvasColor: Colors.grey[800],
   appBarTheme: AppBarTheme(
     elevation: 0,
     backgroundColor: Colors.black,
@@ -119,7 +119,7 @@ final darkTheme = ThemeData(
     selectionHandleColor: Colors.blueAccent,
   ),
   popupMenuTheme: PopupMenuThemeData(
-    color: Colors.grey[850],
+    color: Colors.grey[800],
     textStyle: TextStyle(
       color: Colors.white,
       fontSize: 14.sp,
