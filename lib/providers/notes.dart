@@ -69,7 +69,7 @@ class NotesProvider with ChangeNotifier {
 
   void addPinned(Note note) {
     if (_pinnedNotes.length < 3) {
-      _pinnedNotes.add(note);
+      _pinnedNotes.insert(0, note);
       WidgetsBinding.instance.addPostFrameCallback((_) {
         notifyListeners();
       });
@@ -77,6 +77,9 @@ class NotesProvider with ChangeNotifier {
   }
 
   void removePinned(Note note) {
-    
+    _pinnedNotes.remove(note);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 }

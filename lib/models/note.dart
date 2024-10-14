@@ -2,11 +2,14 @@ class Note {
   final String title;
   final String content;
   final DateTime date;
+  bool isPinned;
 
   Note({
     this.title = '',
     this.content = '',
+    
     DateTime? date,
+    this
   }) : date = date ?? DateTime.now();
 
   Note copyWith({
@@ -55,8 +58,6 @@ class Note {
   static List<Map<String, dynamic>> toJsonList(List<Note> notes) {
     return notes.map((note) => note.toJson()).toList();
   }
-
-  
 
   String monthToString() {
     switch (date.month) {
