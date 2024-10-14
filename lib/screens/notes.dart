@@ -36,14 +36,14 @@ class _NotesScreenState extends State<NotesScreen> {
                     if (context.read<NotesProvider>().selectedNotes.length ==
                         context.read<NotesProvider>().notes.length) {
                       context.read<NotesProvider>().clearSelected();
-                    } else 
-
-                    for (final note in context.read<NotesProvider>().notes) {
-                      if (!context
-                          .read<NotesProvider>()
-                          .selectedNotes
-                          .contains(note)) {
-                        context.read<NotesProvider>().addSelected(note);
+                    } else {
+                      for (final note in context.read<NotesProvider>().notes) {
+                        if (!context
+                            .read<NotesProvider>()
+                            .selectedNotes
+                            .contains(note)) {
+                          context.read<NotesProvider>().addSelected(note);
+                        }
                       }
                     }
                   },
@@ -73,18 +73,15 @@ class _NotesScreenState extends State<NotesScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         child: Column(
           children: [
-            Row(
-              children: [
-                Text(
-                  context.watch<NotesProvider>().selectedNotes.isEmpty
-                      ? 'Notesy'
-                      : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
+            16.sH,
+            Text(
+              context.watch<NotesProvider>().selectedNotes.isEmpty
+                  ? 'Notesy'
+                  : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             16.sH,
             GestureDetector(
