@@ -119,6 +119,7 @@ class _NoteScreenState extends State<NoteScreen> {
         return true;
       },
       child: Scaffold(
+        backgroundColor: Theme.of,
         appBar: AppBar(
           toolbarHeight: 48.h,
           actions: [
