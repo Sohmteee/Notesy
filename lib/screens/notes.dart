@@ -236,62 +236,70 @@ class _NotesScreenState extends State<NotesScreen> {
                       showModalBottomSheet(
                           context: context,
                           backgroundColor: Theme.of(context).cardColor,
-                          shape: ,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(12.r),
+                            ),
+                          ),
                           builder: (context) {
-                            return Column(
-                              children: [
-                                Text(
-                                  'Delete ${context.read<NotesProvider>().selectedNotes.length} items?',
-                                  style: TextStyle(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.bold,
+                            return Padding(
+                              padding: EdgeInsets.all(16.sp),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Text(
+                                    'Delete ${context.read<NotesProvider>().selectedNotes.length} items?',
+                                    style: TextStyle(
+                                      fontSize: 16.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
-                                ),
-                                16.sH,
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    TextButton(
-                                      onPressed: () {
-                                        for (final note in context
-                                            .read<NotesProvider>()
-                                            .selectedNotes) {
+                                  16.sH,
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      TextButton(
+                                        onPressed: () {
+                                          for (final note in context
+                                              .read<NotesProvider>()
+                                              .selectedNotes) {
+                                            context
+                                                .read<NotesProvider>()
+                                                .remove(note);
+                                          }
                                           context
                                               .read<NotesProvider>()
-                                              .remove(note);
-                                        }
-                                        context
-                                            .read<NotesProvider>()
-                                            .clearSelected();
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Delete',
-                                        style: TextStyle(
-                                          fontSize: 16.sp,
-                                          // color: Theme.of(context).errorColor,
+                                              .clearSelected();
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'Delete',
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
+                                            // color: Theme.of(context).errorColor,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                      child: Text(
-                                        'Cancel',
-                                        style: TextStyle(
-                                          fontSize: 16.sp,
-                                          color: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium!
-                                              .color,
+                                      TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: Text(
+                                          'Cancel',
+                                          style: TextStyle(
+                                            fontSize: 16.sp,
+                                            color: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium!
+                                                .color,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             );
                           });
                     },
