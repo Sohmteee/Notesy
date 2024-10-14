@@ -308,23 +308,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                   : 'Pin',
                               style: TextStyle(
                                 fontSize: 12.sp,
-                                color: context
-                                            .watch<NotesProvider>()
-                                            .selectedNotes
-                                            .length >
-                                        context
-                                                .watch<NotesProvider>()
-                                                .pinLimit -
-                                            context
-                                                .watch<NotesProvider>()
-                                                .pinnedNotes
-                                                .length
-                                    ? Colors.grey
-                                    : Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium!
-                                        .color!
-                                        .withOpacity(0.7),
+                                color: color,
                               ),
                             ),
                           ],
