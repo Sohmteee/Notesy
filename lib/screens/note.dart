@@ -129,7 +129,8 @@ class _NoteScreenState extends State<NoteScreen> {
             title: _titleController.text.trim(),
             content: jsonEncode(_contentController.document.toDelta().toJson()),
             date: (_titleController.text.trim() == widget.note.title.trim() &&
-                    _contentController.document.toPlainText().trim() == widget.note.content)
+                    _contentController.document.toPlainText().trim() ==
+                        widget.note.content)
                 ? null
                 : DateTime.now(),
           );
@@ -210,13 +211,7 @@ class _NoteScreenState extends State<NoteScreen> {
               child: QuillEditor(
                 controller: _contentController,
                 scrollController: ScrollController(),
-                scrollable: true,
                 focusNode: _contentFocusNode,
-                autoFocus: false,
-                readOnly: false,
-                placeholder: 'Start typing...',
-                expands: true,
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               ),
             ),
           ],
@@ -341,3 +336,34 @@ class _NoteScreenState extends State<NoteScreen> {
                       style: TextStyle(
                         fontSize: 16.sp,
                       ),
+
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem(
+                value: 'delete',
+                child: Row(
+                  children: [
+                    Icon(
+                      IconlyLight.delete,
+                      size: 20.sp,
+                    ),
+                    8.sW,
+                    Text(
+                      'Delete',
+                      style: TextStyle(
+                        fontSize: 16.sp,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ];
+          },
+        ),
+        8.sW,
+      ],
+    );
+  }
+}
