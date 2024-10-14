@@ -5,10 +5,12 @@ class NoteCard extends StatelessWidget {
     super.key,
     required this.note,
     this.elevation = 0,
+    this.onTap,
   });
 
   final Note note;
   final double elevation;
+  final void Function()? onTap;
 
   String get title =>
       note.title.isEmpty ? note.content.split('\n').first.trim() : note.title;
@@ -26,6 +28,7 @@ class NoteCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return ZoomTapAnimation(
       onTap: () {
+        onTap?.call();
         if (context.read<NotesProvider>().selectedNotes.isEmpty) {
           Navigator.push(
             context,
