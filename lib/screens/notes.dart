@@ -183,22 +183,25 @@ class _NotesScreenState extends State<NotesScreen> {
                 children: [
                   ZoomTapAnimation(
                     onTap: () {},
-                    child: Column(
-                      children: [
-                        Icon(
-                          IconlyLight.lock,
-                          size: 20.sp,
-                          color: color,
-                        ),
-                        6.sH,
-                        Text(
-                          'Hide',
-                          style: TextStyle(
-                            fontSize: 12.sp,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: Column(
+                        children: [
+                          Icon(
+                            IconlyLight.lock,
+                            size: 20.sp,
                             color: color,
                           ),
-                        ),
-                      ],
+                          6.sH,
+                          Text(
+                            'Hide',
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              color: color,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -209,7 +212,7 @@ class _NotesScreenState extends State<NotesScreen> {
                   ZoomTapAnimation(
                     onTap: () {},
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
                         children: [
                           Icon(
@@ -308,7 +311,7 @@ class _NotesScreenState extends State<NotesScreen> {
                       );
                     },
                     child: Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: 8.w),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
                         children: [
                           Icon(
