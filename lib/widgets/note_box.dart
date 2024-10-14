@@ -17,7 +17,7 @@ class NoteCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const NoteScreen(),
+            builder: (context) => NoteScreen(note),
           ),
         );
       },
@@ -58,8 +58,7 @@ class NoteCard extends StatelessWidget {
                 note.dateToString(),
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       fontSize: 10.sp,
-                      color: Theme.of(context)
-                         .hintColor,
+                      color: Theme.of(context).hintColor,
                     ),
               ),
             ],
