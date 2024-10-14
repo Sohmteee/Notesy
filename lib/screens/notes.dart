@@ -77,17 +77,26 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
               8.sH,
               Expanded(
-                child: ListView.builder(
-                  itemCount: context.watch<NotesProvider>().notes.length,
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.symmetric(vertical: 8.h),
-                  itemBuilder: (context, index) {
-                    return NoteCard(
+                child: context.watch<NotesProvider>().notes.isEmpty
+                    ? Center(
+                        child: Text(
+                          'No notes yet',
+                          style: TextStyle(
+                            color: Colors.grey.withOpacity(.5),
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: context.watch<NotesProvider>().notes.length,
+                        physics: const BouncingScrollPhysics(),
+                        padding: EdgeInsets.symmetric(vertical: 8.h),
+                        itemBuilder: (context, index) {
+                          return NoteCard(
                             elevation: 0,
                             note: context.watch<NotesProvider>().notes[index],
                           );
-                  },
-                ),
+                        },
+                      ),
               ),
             ],
           ),
