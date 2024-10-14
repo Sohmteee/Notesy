@@ -15,7 +15,6 @@ class _SearchScreenState extends State<SearchScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 64.h,
-        // automaticallyImplyLeading: false,
         leadingWidth: 30.w,
         title: Hero(
           tag: 'search',
