@@ -14,11 +14,11 @@ class _NotesScreenState extends State<NotesScreen> {
       appBar: AppBar(
         toolbarHeight: 32.h,
         leading: context.watch<NotesProvider>().selectedNotes.isNotEmpty
-            ? const CloseButton(
-              onPressed: () {
-                context.read<NotesProvider>().clearSelected();
-              },
-            )
+            ? CloseButton(
+                onPressed: () {
+                  context.read<NotesProvider>().clearSelected();
+                },
+              )
             : null,
         actions: [
           context.watch<NotesProvider>().selectedNotes.isEmpty
