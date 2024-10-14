@@ -72,20 +72,13 @@ class _NoteScreenState extends State<NoteScreen> {
         _contentController.document.length,
         newContent,
         TextSelection.collapsed(offset: newContent.length),
-      );
-      _contentController.addListener(_handleUndoRedo);
+      );      _contentController.addListener(_handleUndoRedo);
       setState(() {
         canUndo = _undoStack.length > 1;
         canRedo = _redoStack.isNotEmpty;
       });
     }
-      final newContent = _undoStack.last;
-      _contentController.replaceText(
-        0,
-        _contentController.document.length,
-        newContent,
-        TextSelection.collapsed(offset: newContent.length),
-      );
+  }
 
   void _redo() {
     if (_redoStack.isNotEmpty) {
