@@ -55,21 +55,23 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Stack(
         children: [
-       _searchNotes.isEmpty ? Center(
+          _searchNotes.isEmpty
+              ? Center(
                   child: Text(
                     'No notes here',
                     style: TextStyle(
                       color: Colors.grey.withOpacity(.5),
                     ),
                   ),
-                ) :   ListView.builder(
-            padding: EdgeInsets.only(top: 16.h),
-            itemCount: _searchNotes.length,
-            itemBuilder: (context, index) {
-              final note = _searchNotes[index];
-              return NoteCard(note: note);
-            },
-          ),
+                )
+              : ListView.builder(
+                  padding: EdgeInsets.only(top: 16.h),
+                  itemCount: _searchNotes.length,
+                  itemBuilder: (context, index) {
+                    final note = _searchNotes[index];
+                    return NoteCard(note: note);
+                  },
+                ),
           if (_searchController.text.trim().isEmpty)
             GestureDetector(
               onTap: () {
