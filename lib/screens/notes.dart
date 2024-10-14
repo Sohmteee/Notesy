@@ -58,7 +58,7 @@ class _NotesScreenState extends State<NotesScreen> {
             16.sH,
             GestureDetector(
               onTap: () {
-                if (context.watch<NotesProvider>().selectedNotes.isEmpty) {
+                if (context.read<NotesProvider>().selectedNotes.isEmpty) {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
