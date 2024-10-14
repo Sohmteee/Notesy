@@ -1,6 +1,6 @@
 import 'package:notesy/res/res.dart';
 
-void main() {
+Future<void> main() async {
   SystemUiOverlayStyle systemUiOverlayStyle = const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
@@ -8,6 +8,9 @@ void main() {
     systemNavigationBarIconBrightness: Brightness.dark,
   );
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+
+  await Hive.initFlutter();
+  box
 
   runApp(
     MultiProvider(
