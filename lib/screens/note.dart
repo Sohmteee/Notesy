@@ -316,8 +316,6 @@ class _NoteScreenState extends State<NoteScreen> {
                     );
                   },
                 );
-
-                Navigator.pop(context);
                 break;
             }
           },
