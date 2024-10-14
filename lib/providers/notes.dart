@@ -32,6 +32,7 @@ class NotesProvider with ChangeNotifier {
   }
 
   void removeNote(Note note) {
+    if (_pinnedNotes)
     _notes.remove(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
@@ -83,6 +84,13 @@ class NotesProvider with ChangeNotifier {
         notifyListeners();
       });
     }
+  }
+
+  void deletePinnedNote(Note note) {
+    _pinnedNotes.remove(note);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 
   void removePinnedNote(Note note) {
