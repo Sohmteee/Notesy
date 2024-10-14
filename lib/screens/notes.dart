@@ -14,7 +14,7 @@ class _NotesScreenState extends State<NotesScreen> {
       onWillPop: () async {
         if (context.read<NotesProvider>().selectedNotes.isNotEmpty) {
           setState(() {
-            context.read<NotesProvider>().clearSelected();
+            context.read<NotesProvider>().clearSelectedNotes();
           });
           return false;
         }
@@ -102,7 +102,7 @@ class _NotesScreenState extends State<NotesScreen> {
       leading: context.watch<NotesProvider>().selectedNotes.isNotEmpty
           ? CloseButton(
               onPressed: () {
-                context.read<NotesProvider>().clearSelected();
+                context.read<NotesProvider>().clearSelectedNotes();
               },
             )
           : null,
@@ -125,14 +125,14 @@ class _NotesScreenState extends State<NotesScreen> {
                 onPressed: () {
                   if (context.read<NotesProvider>().selectedNotes.length ==
                       context.read<NotesProvider>().notes.length) {
-                    context.read<NotesProvider>().clearSelected();
+                    context.read<NotesProvider>().clearSelectedNotes();
                   } else {
                     for (final note in context.read<NotesProvider>().notes) {
                       if (!context
                           .read<NotesProvider>()
                           .selectedNotes
                           .contains(note)) {
-                        context.read<NotesProvider>().addSelectedNotes(note);
+                        context.read<NotesProvider>().addSelectedNote(note);
                       }
                     }
                   }
@@ -291,7 +291,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                         }
                                         context
                                             .read<NotesProvider>()
-                                            .clearSelected();
+                                            .clearSelectedNotes();
                                         Navigator.pop(context);
                                       },
                                       child: Text(

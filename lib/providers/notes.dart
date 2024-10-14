@@ -38,36 +38,36 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  void toggleSelectedNotes(Note note) {
+  void toggleSelectedNote(Note note) {
     if (_selectedNotes.contains(note)) {
-      removeSelected(note);
+      removeSelectedNote(note);
     } else {
-      addSelectedNotes(note);
+      addSelectedNote(note);
     }
   }
 
-  void addSelectedNotes(Note note) {
+  void addSelectedNote(Note note) {
     _selectedNotes.add(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
 
-  void removeSelected(Note note) {
+  void removeSelectedNote(Note note) {
     _selectedNotes.remove(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
 
-  void clearSelected() {
+  void clearSelectedNotes() {
     _selectedNotes.clear();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
 
-  void addPinned(Note note) {
+  void addPinnedNote(Note note) {
     if (_pinnedNotes.length < 3) {
       _pinnedNotes.insert(0, note);
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -76,7 +76,7 @@ class NotesProvider with ChangeNotifier {
     }
   }
 
-  void removePinned(Note note) {
+  void removePinnedNote(Note note) {
     _pinnedNotes.remove(note);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
