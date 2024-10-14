@@ -13,7 +13,11 @@ class NotesProvider with ChangeNotifier {
   List<Note> get pinnedNotes => _pinnedNotes;
 
   void addNote(Note note) {
-    _notes.add(note);
+    if (note.isPinned) {
+      addPinnedNote(note);
+    } else {
+      _notes.add(note);
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
@@ -23,16 +27,16 @@ class NotesProvider with ChangeNotifier {
     final index = _notes.indexOf(currentNote);
     if (index == -1) {
       addNote(newNote);
-      return;
+    } else {
+      _notes[index] = newNote;
     }
-    _notes[index] = newNote;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
   }
 
   void removeNote(Note note) {
-    _notes.remove(note);
+    if ()
     WidgetsBinding.instance.addPostFrameCallback((_) {
       notifyListeners();
     });
