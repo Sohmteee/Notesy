@@ -32,7 +32,7 @@ class NoteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                note.title,
+                note.title ?? note.content.split('\n').first.trim(),
                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                       fontSize: 14.sp,
                       fontWeight: FontWeight.bold,
