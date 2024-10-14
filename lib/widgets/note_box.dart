@@ -49,44 +49,49 @@ class NoteCard extends StatelessWidget {
           padding: EdgeInsets.all(16.sp),
           child: Row(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  Text(
-                    content ?? 'No text',
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontSize: 12.sp,
-                          color: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .color!
-                              .withOpacity(0.7),
-                        ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  4.sH,
-                  Text(
-                    note.dateToString(),
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          fontSize: 10.sp,
-                          color: Theme.of(context).hintColor,
-                        ),
-                  ),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      content ?? 'No text',
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontSize: 12.sp,
+                            color: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .color!
+                                .withOpacity(0.7),
+                          ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    4.sH,
+                    Text(
+                      note.dateToString(),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            fontSize: 10.sp,
+                            color: Theme.of(context).hintColor,
+                          ),
+                    ),
+                  ],
+                ),
               ),
               if (context.watch<NotesProvider>().selectedNotes.isEmpty)
                 Checkbox(
-                  value: context.watch<NotesProvider>().selectedNotes.contains(note),
+                  value: context
+                      .watch<NotesProvider>()
+                      .selectedNotes
+                      .contains(note),
                   onChanged: (value) {},
                 ),
             ],
