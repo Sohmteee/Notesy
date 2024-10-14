@@ -1,5 +1,4 @@
 import 'package:notesy/res/res.dart';
-import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -70,7 +69,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 Navigator.pop(context);
               },
               child: Container(
-                color: Colors.transparent,
+                color: Colors.black38,
               ),
             ),
         ],
