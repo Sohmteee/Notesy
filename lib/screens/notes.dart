@@ -69,7 +69,7 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
             )
           : null,
-      bottomSheet: context.watch<NotesProvider>().selectedNotes.isEmpty
+      bottomNavigationBar: context.watch<NotesProvider>().selectedNotes.isEmpty
           ? null
           : BottomSheet(
               onClosing: () {},
@@ -93,10 +93,10 @@ class _NotesScreenState extends State<NotesScreen> {
                       IconButton(
                         icon: const Icon(
                           IconlyLight.lock,
+                          color: Theme,
                         ),
                         onPressed: () {},
                       ),
-                   
                       IconButton(
                         icon: const Icon(
                           IconlyLight.delete,
