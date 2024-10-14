@@ -254,7 +254,7 @@ class _NotesScreenState extends State<NotesScreen> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  'Delete ${context.read<NotesProvider>().selectedNotes.length} item${context.read<NotesProvider>().selectedNotes.length > 1 ? 's' : ''}?',
+                                  'Delete ${context.read<NotesProvider>().selectedNotes.length} note${context.read<NotesProvider>().selectedNotes.length > 1 ? 's' : ''}?',
                                   style: TextStyle(
                                     fontSize: 16.sp,
                                     fontWeight: FontWeight.bold,
