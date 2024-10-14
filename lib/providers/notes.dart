@@ -6,11 +6,15 @@ class NotesProvider with ChangeNotifier {
 
   void add(Note note) {
     _notes.add(note);
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 
   void remove(Note note) {
     _notes.remove(note);
-    notifyListeners();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 }
