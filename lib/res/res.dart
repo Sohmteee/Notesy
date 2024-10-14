@@ -18,6 +18,8 @@ export 'package:notesy/constants/colors.dart';
 
 //data
 export 'package:notesy/data/theme.dart';
+export 'package:notesy/data/data.dart';
+
 
 // helpers
 export 'package:notesy/helpers/sized_box.dart';

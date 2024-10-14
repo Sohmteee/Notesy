@@ -10,7 +10,7 @@ Future<void> main() async {
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
 
   await Hive.initFlutter();
-  box
+  box = await Hive.openBox('notes');
 
   runApp(
     MultiProvider(
