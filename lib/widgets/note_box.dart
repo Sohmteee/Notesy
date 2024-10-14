@@ -92,7 +92,9 @@ class NoteCard extends StatelessWidget {
                       .watch<NotesProvider>()
                       .selectedNotes
                       .contains(note),
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    context.read<NotesProvider>().toggleSelected(note);
+                  },
                   side: BorderSide(
                     color: Theme.of(context).textTheme.bodySmall!.color!,
                   ),
