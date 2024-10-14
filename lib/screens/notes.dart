@@ -29,8 +29,13 @@ class _NotesScreenState extends State<NotesScreen> {
                   onPressed: () {},
                 )
               : IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.checklist_rtl_rounded,
+                    color:
+                        (context.read<NotesProvider>().selectedNotes.length ==
+                                context.read<NotesProvider>().notes.length)
+                            ? Theme.of(context).primaryColor
+                            : null,
                   ),
                   onPressed: () {
                     if (context.read<NotesProvider>().selectedNotes.length ==
