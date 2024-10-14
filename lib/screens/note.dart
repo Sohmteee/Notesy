@@ -198,7 +198,7 @@ class _NoteScreenState extends State<NoteScreen> {
               focusNode: _titleFocusNode,
               controller: _titleController,
               style: TextStyle(
-                fontSize: 16.sp,
+                fontSize: 20.sp,
               ),
               onTapOutside: (_) => _titleFocusNode.unfocus(),
               onChanged: (value) {
@@ -260,6 +260,7 @@ class _NoteScreenState extends State<NoteScreen> {
                 controller: _contentController,
                 style: TextStyle(
                   fontSize: 16.sp,
+                  
                 ),
                 onTapOutside: (_) => _contentFocusNode.unfocus(),
                 onChanged: (value) {
