@@ -43,14 +43,15 @@ class _NotesScreenState extends State<NotesScreen> {
               Row(
                 children: [
                   Text(
-                    context.watch<NotesProvider>().selectedNotes.isEmpty
-                        ? 'Notesy'
-                        : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                      context.watch<NotesProvider>().selectedNotes.isEmpty
+                          ? 'Notesy'
+                          : '${context.watch<NotesProvider>().selectedNotes.length} item selected',
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
+                  
                 ],
               ),
               16.sH,
@@ -205,34 +206,7 @@ class _NotesScreenState extends State<NotesScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ZoomTapAnimation(
-                    onTap: () {},
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: Column(
-                        children: [
-                          Icon(
-                            IconlyLight.lock,
-                            size: 20.sp,
-                            color: color,
-                          ),
-                          6.sH,
-                          Text(
-                            'Hide',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              color: color,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+             
               Opacity(
                 opacity: (context
                             .watch<NotesProvider>()
@@ -403,7 +377,7 @@ class _NotesScreenState extends State<NotesScreen> {
                                             .selectedNotes) {
                                           context
                                               .read<NotesProvider>()
-                                              .removeNote(note);
+                                              .deleteNote(note);
                                         }
                                         context
                                             .read<NotesProvider>()

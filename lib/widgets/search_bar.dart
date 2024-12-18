@@ -5,9 +5,10 @@ class AppSearchBar extends StatelessWidget {
     super.key,
     this.editable = true,
     this.controller,
+    this.isHidden = false,
   });
 
-  final bool editable;
+  final bool editable, isHidden;
   final TextEditingController? controller;
 
   @override
@@ -58,7 +59,7 @@ class AppSearchBar extends StatelessWidget {
                 ),
                 8.sW,
                 Text(
-                  'Search Notesy',
+                  isHidden ? 'Search Hidden Notes' : 'Search Notesy',
                   style: TextStyle(
                     fontSize: 16.sp,
                     color: Theme.of(context)

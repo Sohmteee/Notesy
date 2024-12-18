@@ -12,18 +12,25 @@ class Note extends HiveObject {
   @HiveField(2)
   final DateTime date;
 
+  @HiveField(3)
+  final int id;
+
   Note({
     this.title = '',
     this.content = '',
     DateTime? date,
-  }) : date = date ?? DateTime.now();
+    int? id,
+  })  : date = date ?? DateTime.now(),
+        id = (date ?? DateTime.now()).millisecondsSinceEpoch;
 
   Note copyWith({
+    int? id,
     String? title,
     String? content,
     DateTime? date,
   }) {
     return Note(
+      id: id ?? this.id,
       title: title ?? this.title,
       content: content ?? this.content,
       date: date ?? this.date,
@@ -35,24 +42,27 @@ class Note extends HiveObject {
     if (identical(this, other)) return true;
 
     return other is Note &&
+        other.id == id &&
         other.title == title &&
         other.content == content &&
         other.date == date;
   }
 
   @override
-  int get hashCode => title.hashCode ^ content.hashCode ^ date.hashCode;
+  int get hashCode =>
+      id.hashCode ^ title.hashCode ^ content.hashCode ^ date.hashCode;
 
   @override
   String toString() => 'Note title: $title, content: $content, date: $date';
 
   Note.fromJson(Map<String, dynamic> json)
-      : title = json['title'],
+      : id = json['id'],
+        title = json['title'],
         content = json['content'],
-        date = DateTime.parse(json['date'])
-    ;
+        date = DateTime.parse(json['date']);
 
   Map<String, dynamic> toJson() => {
+        'id': id,
         'title': title,
         'content': content,
         'date': date.toIso8601String(),

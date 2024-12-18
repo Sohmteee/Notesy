@@ -1,7 +1,7 @@
 import 'package:notesy/res/res.dart';
 
 class NotesProvider with ChangeNotifier {
-  int _pinLimit = 3;
+  int _pinLimit = 10;
   int get pinLimit => _pinLimit;
   set pinLimit(int pinLimit) {
     _pinLimit = pinLimit;
@@ -20,6 +20,16 @@ class NotesProvider with ChangeNotifier {
 
   final List _pinnedNotes = box.get('pinnedNotes', defaultValue: []);
   List get pinnedNotes => _pinnedNotes;
+
+  set selectedNotes(List selectedNotes) {
+    _selectedNotes
+      ..clear()
+      ..addAll(selectedNotes);
+    box.put('selectedNotes', _selectedNotes);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
+  }
 
   void addNote(Note note) {
     _notes.add(note);
@@ -48,7 +58,7 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  void removeNote(Note note) {
+  void deleteNote(Note note) {
     if (_pinnedNotes.contains(note)) {
       deletePinnedNote(note);
     } else {
@@ -62,7 +72,7 @@ class NotesProvider with ChangeNotifier {
 
   void toggleSelectedNote(Note note) {
     if (_selectedNotes.contains(note)) {
-      removeSelectedNote(note);
+      deleteSelectedNote(note);
     } else {
       addSelectedNote(note);
     }
@@ -76,7 +86,7 @@ class NotesProvider with ChangeNotifier {
     });
   }
 
-  void removeSelectedNote(Note note) {
+  void deleteSelectedNote(Note note) {
     _selectedNotes.remove(note);
     box.put('selectedNotes', _selectedNotes);
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -121,4 +131,6 @@ class NotesProvider with ChangeNotifier {
       notifyListeners();
     });
   }
+
+
 }

@@ -5,13 +5,14 @@ export 'package:flutter/foundation.dart';
 
 
 // packages
-export 'package:flutter_animate/flutter_animate.dart';
+// export 'package:flutter_animate/flutter_animate.dart';
 export 'package:hive_flutter/hive_flutter.dart';
 export 'package:provider/provider.dart';
 export 'package:zoom_tap_animation/zoom_tap_animation.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:iconly/iconly.dart';
 export 'package:hive/hive.dart';
+export 'package:share_plus/share_plus.dart';
 
 
 // constants

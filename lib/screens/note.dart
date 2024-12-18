@@ -114,8 +114,9 @@ class _NoteScreenState extends State<NoteScreen> {
           );
           context.read<NotesProvider>().updateNote(widget.note, note);
         } else {
-          context.read<NotesProvider>().removeNote(widget.note);
+          context.read<NotesProvider>().deleteNote(widget.note);
         }
+
         return true;
       },
       child: Scaffold(
@@ -252,6 +253,13 @@ class _NoteScreenState extends State<NoteScreen> {
           onSelected: (value) {
             switch (value) {
               case 'share':
+                final RenderBox box = context.findRenderObject() as RenderBox;
+                Share.share(
+                  ('${_titleController.text}\n\n${_contentController.text}')
+                      .trim(),
+                  sharePositionOrigin:
+                      box.localToGlobal(Offset.zero) & box.size,
+                );
                 break;
               case 'delete':
                 showModalBottomSheet(
@@ -299,7 +307,7 @@ class _NoteScreenState extends State<NoteScreen> {
                                   Navigator.pop(context);
                                   context
                                       .read<NotesProvider>()
-                                      .removeNote(widget.note);
+                                      .deleteNote(widget.note);
                                   Navigator.pop(context);
                                 },
                                 child: Text(
