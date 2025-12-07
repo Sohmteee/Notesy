@@ -5,8 +5,8 @@ Future<void> main() async {
     statusBarColor: Colors.transparent,
     systemNavigationBarColor: Colors.transparent,
   );
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
 
   await Hive.initFlutter();
   Hive.registerAdapter(NoteAdapter());
